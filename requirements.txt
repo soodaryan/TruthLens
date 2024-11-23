@@ -1,0 +1,9 @@
+numpy
+langdetect
+SpeechRecognition
+googletrans
+
+pandas
+transformers
+torch
+torchvision
