@@ -12,5 +12,3 @@ if __name__ == "__main__" :
 
     print(f"Transcript : {transcript}")
     print(f"Sentiment : {sentiment}")
-
-
