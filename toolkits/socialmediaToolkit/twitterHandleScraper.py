@@ -1,8 +1,11 @@
 import requests
 import csv
+from dotenv import load_dotenv, find_dotenv
+import os 
+dotenv_path = find_dotenv()
+load_dotenv(dotenv_path)
 
-# Constants
-API_TOKEN = 'apify_api_we3sKd4NhbQ40a6GWtBu9rccGhEvJZ0S8IVD'
+TWITTER_HANDLE_API = os.getenv("TWITTER_HANDLE_API")
 ACTOR_URL = 'https://api.apify.com/v2/acts/gentle_cloud~twitter-tweets-scraper/run-sync-get-dataset-items'
 TWITTER_HANDLE = 'aajtak'  # AajTak's Twitter handle
 
