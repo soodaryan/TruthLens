@@ -1,5 +1,4 @@
 import warnings
-import urllib3
 
 # Suppress the specific warning related to LibreSSL
 warnings.filterwarnings("ignore")
