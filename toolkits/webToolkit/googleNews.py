@@ -12,7 +12,7 @@ os.environ["SERPER_API_KEY"] = os.getenv("SERPER_API_KEY")
 search_serper = GoogleSerperAPIWrapper()
 params = {
   "engine": "google_news",
-  "q": "Allu Arjun",
+  "q": "Manmoahn Singh died",
   "gl": "us",
   "hl": "en",
   "api_key": os.getenv("google_news_api")

@@ -4,7 +4,7 @@ import numpy as np
 from langdetect import detect
 import speech_recognition as sr
 from googletrans import Translator
-
+    
 formats = ['.webm', '.mp4', '.mpga', '.m4a', '.mp3', '.wav', '.mpeg']
 
 def is_valid_file(file_path):

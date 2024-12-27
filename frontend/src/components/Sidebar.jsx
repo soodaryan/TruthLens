@@ -49,6 +49,10 @@ const Sidebar = () => {
             <i className="fas fa-chart-line"></i>
             <span>Overview</span>
           </Link>
+          <Link to="/input" onClick={handleNavLinkClick} className="active">
+            <i className="fas fa-chart-line"></i>
+            <span>Input</span>
+          </Link>
           <Link to="/content-analysis" onClick={handleNavLinkClick}>
             <i className="fas fa-file-alt"></i>
             <span>Content</span>
@@ -57,13 +61,13 @@ const Sidebar = () => {
             <i className="fas fa-file-alt"></i>
             <span>Analytics</span>
           </Link>
-          <Link to="/reports" onClick={handleNavLinkClick}>
+          {/* <Link to="/reports" onClick={handleNavLinkClick}>
             <i className="fas fa-flag"></i>
             <span>Reports</span>
-          </Link>
+          </Link> */}
           <Link to="/trend-analysis" onClick={handleNavLinkClick}>
             <i className="fas fa-chart-bar"></i>
-            <span>Trends</span>
+            <span>Trends And Reports</span>
           </Link>
           <Link to="/ai-insights" onClick={handleNavLinkClick}>
             <i className="fas fa-brain"></i>

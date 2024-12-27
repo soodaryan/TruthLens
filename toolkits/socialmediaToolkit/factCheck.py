@@ -4,7 +4,6 @@ import os
 dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 
-
 def fact_check_search(query, api_key):
     """
     Searches for fact-checking claims based on the query.
@@ -33,7 +32,7 @@ def fact_check_search(query, api_key):
 # Example Usage
 if __name__ == "__main__":
     GOOGLE_FACTCHECK_API = os.getenv("GOOGLE_FACTCHECK_API")   # Replace with your actual API key
-    search_query = "Color of apple is red"
+    search_query = "manmohan singh"
 
     result = fact_check_search(search_query, GOOGLE_FACTCHECK_API)
     print(result)
