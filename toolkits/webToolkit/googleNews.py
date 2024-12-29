@@ -15,7 +15,7 @@ params = {
   "q": "Manmoahn Singh died",
   "gl": "us",
   "hl": "en",
-  "api_key": os.getenv("google_news_api")
+  "api_key": os.getenv("SERP_API_KEY")
 }
 
 search = GoogleSearch(params)
@@ -31,5 +31,6 @@ for news_result in news_results:
 for url in news_url:
   print("URL: ", url)
   print(search_serper.run(url))
+
   
  

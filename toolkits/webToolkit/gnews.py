@@ -12,7 +12,6 @@ url = f"https://gnews.io/api/v4/search?q={query}&lang=en&country=us&max=10&apike
 with urllib.request.urlopen(url) as response:
     data = json.loads(response.read().decode("utf-8"))
     articles = data["articles"]
-    # print(articles[0])   
     for i in range(len(articles)):
         print(f"Title: {articles[i]['title']}")
         print(f"Description: {articles[i]['description']}")
