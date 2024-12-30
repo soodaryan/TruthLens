@@ -42,11 +42,11 @@ class TweetScraper:
         tweets = None
         while self.tweet_count < self.min_tweets:
             if tweets is None:
-                print(f'{datetime.now()} - Getting tweets...')
+                # print(f'{datetime.now()} - Getting tweets...')
                 tweets = await self.client.search_tweet(self.query, product='Latest')
             else:
                 wait_time = randint(5, 10)
-                print(f'{datetime.now()} - Getting next tweets after {wait_time} seconds...')
+                # print(f'{datetime.now()} - Getting next tweets after {wait_time} seconds...')
                 time.sleep(wait_time)
                 tweets = await tweets.next()
             
@@ -57,7 +57,7 @@ class TweetScraper:
                     writer = csv.writer(file)
                     writer.writerow(tweet_data)
         
-        print(f"Total tweets fetched: {self.tweet_count}")
+        # print(f"Total tweets fetched: {self.tweet_count}")
     
     async def start_scraping(self):
         """Initialize the scraping process."""
@@ -65,7 +65,7 @@ class TweetScraper:
         self.create_csv()
         await self.fetch_tweets()
 
-if __name__ == "__main__":
-    query = 'your-query-here'  # Assign your query string here
-    scraper = TweetScraper(query=query)
-    asyncio.run(scraper.start_scraping())  # Run the asyncio event loop for scraping
+# if __name__ == "__main__":
+#     query = 'your-query-here'  # Assign your query string here
+#     scraper = TweetScraper(query=query)
+#     asyncio.run(scraper.start_scraping())  # Run the asyncio event loop for scraping
