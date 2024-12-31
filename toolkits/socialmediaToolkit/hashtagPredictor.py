@@ -8,7 +8,6 @@ from TruthLens.lib import hashtag_predictor_prompt
 
 
 class HashtagPredictor:
-
     def __init__(self):
         self.openai = OpenAI()
 
@@ -25,7 +24,7 @@ class HashtagPredictor:
 
 if __name__ == "__main__":
     news = """
-    Pushpa 2 Sandhya Theatre tragedy: Dil Raju says ‘whole film industry’ will meet CM Revanth Reddy
+    Pushpa 2 Sandhya Theatre tragedy: Dil Raju says 'whole film industry' will meet CM Revanth Reddy
     Dil Raju, shared that Telangana CM Revanth Reddy has assured that he will act as a bridge between the Telangana Film Development Corporation and the government.
     Dil Raju visited KIMS Hospital in Secunderabad, Hyderabad, to meet Sri Tej's family. Speaking to ANI, he revealed that he had previously met Telangana Chief Minister Revanth Reddy to discuss providing support to Sri Tej's family, ensuring that both the film industry and government would offer all necessary assistance.
     """

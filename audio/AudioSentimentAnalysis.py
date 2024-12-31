@@ -2,8 +2,12 @@ import os
 import assemblyai as aai
 #from TruthLens.audio.SpeechToText import AudioProcessor
 #from TruthLens.text import sentiment_analyzer
-from TruthLens.audio.SpeechToText import audioProcessor, TranscriptProcessor, SpeechToText, AudioFileProcessor
-from TruthLens.text import SentimentAnalyzer
+from audio.SpeechToText.AudioProcessor import audioProcessor, TranscriptProcessor, SpeechToText, AudioFileProcessor
+from text import SentimentAnalyzer
+from dotenv import load_dotenv
+load_dotenv()
+
+
 
 
 class SentimentAnalysis:
@@ -11,8 +15,6 @@ class SentimentAnalysis:
 
         self.audio_file = audio_file
         self.translate_to_english = translate_to_english
-        aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
-
         self.audio_processor = AudioFileProcessor(self.audio_file, self.translate_to_english)
         self.transcript_processor = TranscriptProcessor(translate_to_english)
         self.sentiment_analyzer = SentimentAnalyzer()
@@ -20,6 +22,8 @@ class SentimentAnalysis:
     def get_sentiment_from_assemblyai(self):
         """Returns the sentiment of input news audio/video file using AssemblyAI."""
         try:
+            aai.settings.api_key = os.environ["ASSEMBLYAI_API_KEY"]
+
             config = aai.TranscriptionConfig(sentiment_analysis=True)
             transcript = aai.Transcriber().transcribe(self.audio_file, config)
 
@@ -45,7 +49,7 @@ class SentimentAnalysis:
         return self.sentiment_analyzer.analyze_sentiment(transcript)
 
 if __name__ == "__main__":
-    sentiment_analysis = SentimentAnalysis(audio_file="/home/hemant/TruthTell/TruthLens/audio/data/speaker_3.wav", translate_to_english=True)
+    sentiment_analysis = SentimentAnalysis(audio_file=r"TruthLens\audio\data\speaker_2.wav", translate_to_english=True)
 
     try:
         # Fetch sentiment analysis from AssemblyAI

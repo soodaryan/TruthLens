@@ -4,7 +4,7 @@ import logging
 import numpy as np
 from langdetect import detect
 import speech_recognition as sr
-from googletrans import Translator
+from translate import Translator
 
 
 class audioProcessor:
@@ -37,8 +37,8 @@ class audioProcessor:
 
 class TranscriptProcessor:
     def __init__(self, translate_to_english=False):
-        self.translate_to_english = translate_to_english
-        self.translator = Translator() if translate_to_english else None
+        self.translate_to_english=translate_to_english
+        self.translator = Translator(to_lang="en")
 
     def create_transcript_file(self, file_path, transcript, confidence_scores=None):
         output_file_path = f"{file_path}-transcript.txt"
@@ -57,12 +57,10 @@ class TranscriptProcessor:
 
     def process_transcript(self, transcript, file_path):
         if self.translate_to_english:
-            try:
-                translated_text = self.translator.translate(transcript, dest='en').text
-                with open(f"{file_path}-transcript_en.txt", 'w') as f:
-                    f.write(f"{translated_text}\n")
-            except Exception as e:
-                logging.error(f"Translation failed: {e}")
+            
+                translated_text = self.translator.translate(transcript)
+                print(translated_text)
+   
         return transcript
 
 
@@ -100,7 +98,7 @@ class AudioFileProcessor:
         self.transcript_processor = TranscriptProcessor(translate_to_english)
 
     def process(self):
-        if not AudioProcessor.is_valid_file(self.audio_file) or not AudioProcessor.is_supported_format(self.audio_file):
+        if not audioProcessor.is_valid_file(self.audio_file) or not audioProcessor.is_supported_format(self.audio_file):
             logging.error(f"Input file '{self.audio_file}' does not exist, is not a file, or has an unsupported format.")
             return
 
@@ -109,11 +107,12 @@ class AudioFileProcessor:
             return
 
         self.transcript_processor.create_transcript_file(self.audio_file, transcript)
+
         return self.transcript_processor.process_transcript(transcript, self.audio_file)
 
 
 def main():
-    audio_file = "audio/data/speaker_2.wav"
+    audio_file = "TruthLens/audio/data/speaker_2.wav"
     processor = AudioFileProcessor(audio_file, translate_to_english=True)
     transcript = processor.process()
     print(transcript)
