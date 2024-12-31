@@ -22,10 +22,34 @@ const InputForm = () => {
     setVideoUrls((prevUrls) => [...prevUrls, ...newVideoUrls]);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // You can send `images` and `videos` to a server if needed
-    navigate("/trend-analysis");
+
+    // Create a FormData object
+    const formData = new FormData();
+
+    // Append all videos to the FormData object
+    videos.forEach((video, index) => {
+      formData.append(`video_${index}`, video);
+    });
+
+    try {
+      // Send the videos to the backend
+      const response = await fetch("http://127.0.0.1:5000/upload-video", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Upload successful:", result.message);
+        navigate("/trend-analysis"); // Navigate to another page after success
+      } else {
+        console.error("Failed to upload video");
+      }
+    } catch (error) {
+      console.error("Error uploading video:", error);
+    }
   };
 
   return (
