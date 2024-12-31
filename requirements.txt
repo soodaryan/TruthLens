@@ -10,3 +10,8 @@ torchvision
 
 python-dotenv
 assemblyai
+
+langchain_community
+google-search-results
+nest_asyncio
+gliner

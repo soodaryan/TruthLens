@@ -1,31 +1,29 @@
 import requests
-import os 
+import os
 from dotenv import load_dotenv, find_dotenv
 
-dotenv_path = find_dotenv()
-load_dotenv(dotenv_path)
+class OCRService:
+    def __init__(self, api_key):
+        dotenv_path = find_dotenv()
+        load_dotenv(dotenv_path)
+        self.api_key = api_key
+        self.api_endpoint = "https://api.ocr.space/parse/imageurl"
 
+    def imgOCR(self, image_url):
+        params = {
+            "apikey": self.api_key,
+            "url": image_url
+        }
 
-def imgOCR(image_url, OCR_api_key):
-    """
-    Calls the OCR API with the given image URL and returns the parsed response.
-    """
-    api_key = OCR_api_key
-    api_endpoint = "https://api.ocr.space/parse/imageurl"
-    params = {
-        "apikey": api_key,
-        "url": image_url
-    }
-
-    try:
-        response = requests.get(api_endpoint, params=params)
-        response.raise_for_status()  
-        print(response.json())
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        return {"error": str(e)}
+        try:
+            response = requests.get(self.api_endpoint, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            return {"error": str(e)}
 
 if __name__ == "__main__":
+    ocr_service = OCRService(os.getenv("OCR_API_KEY"))
     image_url = "https://imgur.com/truthlens-XIJEVXw"
-    imgOCR(image_url, os.getenv("OCR_API_KEY"))
-
+    result = ocr_service.imgOCR(image_url)
+    print(result)

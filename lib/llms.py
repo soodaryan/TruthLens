@@ -19,7 +19,7 @@ class OpenAI:
 
         response = requests.post(create_session_url, headers=self.headers, json=session_body)
         response_data = response.json()
-        self.session_id = response_data['data']['id']
+        self.session_id = response_data["data"]["id"]
 
 
     def query(self, query):

@@ -1,5 +1,5 @@
-from toolkits.socialmediaToolkit.hashtagPredictor import hashtagPredictor
-from lib.llms import OpenAI
+from TruthLens.toolkits.socialmediaToolkit import hashtagPredictor
+from TruthLens.lib import OpenAI
 
 class SocialMediaTool : 
     def __init__(self) :

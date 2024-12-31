@@ -1,1 +1,1 @@
-from AudioProcessor import STT
+from AudioProcessor import *
