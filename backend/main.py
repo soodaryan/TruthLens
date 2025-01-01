@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+from images.deepfake_detection import detect_deepfake
 
 app = Flask(__name__)
 CORS(app) 
@@ -42,7 +43,8 @@ def upload_media():
     
 
 def run_models(file_path):
-    print()
+    deepfake=detect_deepfake(file_path)
+    print("The image is", deepfake)
 
 
 
