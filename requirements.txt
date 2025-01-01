@@ -16,3 +16,7 @@ google-search-results
 nest_asyncio
 gliner==0.2.13
 python-dotenv
+
+cloudinary
+flask
+flask_cors

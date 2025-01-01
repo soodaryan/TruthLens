@@ -3,10 +3,8 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 class OCRService:
-    def __init__(self, api_key):
-        dotenv_path = find_dotenv()
-        load_dotenv(dotenv_path)
-        self.api_key = api_key
+    def __init__(self):
+        self.api_key = os.getenv("OCR_API_KEY")
         self.api_endpoint = "https://api.ocr.space/parse/imageurl"
 
     def imgOCR(self, image_url):

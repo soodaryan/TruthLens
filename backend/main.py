@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
-from images.deepfake_detection import detect_deepfake
+from images.graphicDetails import ImageProcessor
+from images.cloudi import CloudinaryPost
 
 app = Flask(__name__)
 CORS(app) 
@@ -43,10 +44,26 @@ def upload_media():
     
 
 def run_models(file_path):
-    deepfake=detect_deepfake(file_path)
-    print("The image is", deepfake)
+    image_processor = ImageProcessor(file_path)
+    # deepfake= image_processor.detect_deepfake()
+    hehe = CloudinaryPost()
+    img_path = "/Users/vishrutgrover/coding/truthlens/TruthLens/images/deepfake.png"
+    response = hehe.upload(img_path)
+    # print(response['secure_url'])
 
+    # public_url = image_processor.post_to_imgur()
+
+    goog_lens_outp = image_processor.analyze_with_google_lens(response['secure_url'])
+    deepfake_outp = image_processor.detect_deepfake()
+    ocr_outp = image_processor.perform_ocr()
+
+    print("The image is", goog_lens_outp)
+    print()
+    print("The image is", deepfake_outp)
+    print()
+    print("The image is", ocr_outp)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # app.run(debug=True, host='0.0.0.0', port=5000)
+    run_models("/Users/vishrutgrover/coding/truthlens/TruthLens/images/ss.png")
