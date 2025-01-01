@@ -1,0 +1,65 @@
+/* navbar.css */
+.navbar {
+    width: 98%;
+    height: 80px;
+    background-color:rgba(15, 0, 39, 0.6); /* Translucent purple */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  .navbar h1{
+    font-family: 'Poppins', sans-serif; /* Elegant sans-serif font */
+    font-size: 35px;
+    color: #ffffff;
+  }
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Poppins', sans-serif; /* Elegant sans-serif font */
+  }
+  
+  .navbar-links li {
+    
+    list-style-type: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #e0e0e0;
+    letter-spacing: 1px; /* Adds spacing between letters */
+    transition: color 0.3s ease, transform 0.2s ease; /* Smooth transition for color and scale */
+  }
+  
+  .navbar-links li:hover {
+    color: #ffffff;
+    transform: scale(1.05); /* Slightly increases size on hover */
+    font-weight: bold;
+  }
+  
+  /* Importing Google Font */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  
+  .navbar-buttons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .navbar-button {
+    padding: 10px 20px;
+    margin: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly translucent button background */
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar-button:hover {
+    background-color: #ffffff;
+    color: #800080; /* Darker purple for hover */
+  }
+  

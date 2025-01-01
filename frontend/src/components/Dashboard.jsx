@@ -107,21 +107,21 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-6 ml-60">
-      <section
+      <div className="bg-white flex-1 p-6 ml-60">
+        <section
           id="profile_management"
-          className="p-6 space-y-6 element-highlight"
+          className="bg-white p-6 space-y-6 element-highlight"
         >
           <div
-            className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+            className="bg-white grid grid-cols-1 lg:grid-cols-3 gap-6"
             id="el-cg2z4vpn"
           >
             {/* Profile Overview Card */}
             <div
-              className="lg:col-span-1 bg-white rounded-lg border border-neutral-300 p-6 element-highlight"
+              className="lg:col-span-1 bg-white rounded-lg border border-neutral-300 pt-4 p-6 element-highlight"
               id="el-rfhh6hea"
             >
-              <div className="text-center space-y-4" id="el-ssmu59bz">
+              <div className="bg-white text-center space-y-4" id="el-ssmu59bz">
                 <img
                   className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
                   src="https://avatar.iran.liara.run/public"
@@ -130,18 +130,15 @@ const Dashboard = () => {
                   id="el-amo17jis"
                 />
                 <div id="el-a5g7ju64">
-                  <h3
-                    className="text-lg font-medium text-black"
-                    id="el-30dimsth"
-                  >
+                  <h3 className="text-lg font-medium text-black" id="el-30dimsth">
                     Kartik Sharma
                   </h3>
-                  <p className="text-neutral-500" id="el-safedpgm">
-                    User ID - 12345 
+                  <p className="text-neutral-300" id="el-safedpgm">
+                    User ID - 12345
                   </p>
                 </div>
                 <div
-                  className="border-t border-neutral-300 pt-4"
+                  className="border-t border-neutral-500 pt-4"
                   id="el-ywuhlho4"
                 >
                   <dl className="space-y-4" id="el-ktdr4eew">
@@ -149,10 +146,9 @@ const Dashboard = () => {
                       <dt className="text-xl text-black" id="el-z9az9u6r">
                         User Details
                       </dt>
-                      
                     </div>
                     <div id="el-ykgxehk3">
-                      <dt className="text-sm text-neutral-500" id="el-5s8mndto">
+                      <dt className="text-sm text-neutral-700" id="el-5s8mndto">
                         Location
                       </dt>
                       <dd className="text-black" id="el-kvu81i6a">
@@ -160,7 +156,7 @@ const Dashboard = () => {
                       </dd>
                     </div>
                     <div id="el-004cboiw">
-                      <dt className="text-sm text-neutral-500" id="el-jalpjl9j">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
                         Cases Handled
                       </dt>
                       <dd className="text-black" id="el-zn9s32tb">
@@ -172,14 +168,15 @@ const Dashboard = () => {
               </div>
             </div>
 
+
             {/* Activity & Claims Section */}
-            <div className="lg:col-span-2 space-y-6" id="el-wa1xx5sb">
+            <div className=" lg:col-span-2 space-y-6" id="el-wa1xx5sb">
               {/* Stats Cards */}
               <div
                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 id="el-kk2vaxwv"
               >
-                
+
 
                 <div
                   className="bg-white rounded-lg border border-neutral-300 p-4"
@@ -262,29 +259,27 @@ const Dashboard = () => {
 
               {/* Recent Activity */}
               <div className="bg-white border rounded-lg p-6 mb-6">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-semibold">Fake News Demographics</h3>
-              <div className="flex gap-2">
-                <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">24h</button>
-                <button className="px-4 py-2 text-sm bg-primary-600 text-white rounded-lg">7d</button>
-                <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">30d</button>
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-lg font-semibold">Fake News Demographics</h3>
+                  <div className="flex gap-2">
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">24h</button>
+                    <button className="px-4 py-2 text-sm bg-primary-600 text-white rounded-lg">7d</button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">30d</button>
+                  </div>
+                </div>
+                <div id="trend-analysis-chart" className="h-80"></div>
               </div>
-            </div>
-            <div id="trend-analysis-chart" className="h-80"></div>
-          </div>
 
             </div>
           </div>
         </section>
         <section id="claims_dashboard" className="p-6 space-y-6">
-          
 
-          {/* Claims Table */}
           <div className="bg-white rounded-lg border border-gray-200">
             <div className="p-4 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Recent Claims
+                  Recent Claims of Fake News 
                 </h2>
                 <div className="flex space-x-2">
                   <button className="px-4 py-2 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition-colors">
@@ -301,22 +296,19 @@ const Dashboard = () => {
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Claim ID
-                    </th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Claimant
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Type
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Amount
+                      Time
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Risk Score
+                      Confidance Level
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
@@ -325,9 +317,6 @@ const Dashboard = () => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      #CL-45678
-                    </td>
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <img
@@ -336,18 +325,190 @@ const Dashboard = () => {
                           alt="Claimant"
                         />
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Manoj Gupta</p>
-                          <p className="text-xs text-gray-500">ID: 89223</p>
+                          <p className="text-sm text-gray-900">Kartik Sharma</p>
+                          <p className="text-xs text-gray-500">ID: 12345</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-900">
-                      Auto Insurance
+                      Twitter Post
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">$12,450</td>
+                    <td className="px-4 py-4 text-sm text-gray-900">2 hr ago </td>
                     <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-yellow-100 text-yellow-500">
-                        Under Review
+                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
+                        Fake News 
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <span className="text-green-500 text-sm">High</span>
+                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                          <div
+                            className="bg-green-500 h-1.5 rounded-full"
+                            style={{ width: "85%" }}
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm">
+                      <button className="text-blue-500 hover:text-blue-400">
+                        View Details
+                      </button>
+                    </td>
+                  </tr>
+                  {/* Additional rows with similar structure but different data */}
+                </tbody>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <img
+                          className="h-8 w-8 rounded-full opacity-100"
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Claimant"
+                        />
+                        <div className="ml-3">
+                          <p className="text-sm text-gray-900">Kartik Sharma</p>
+                          <p className="text-xs text-gray-500">ID: 12345</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      Aajtak News Article
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">5 hr ago </td>
+                    <td className="px-4 py-4">
+                      <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
+                        True News 
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <span className="text-green-500 text-sm">High</span>
+                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                          <div
+                            className="bg-green-500 h-1.5 rounded-full"
+                            style={{ width: "85%" }}
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm">
+                      <button className="text-blue-500 hover:text-blue-400">
+                        View Details
+                      </button>
+                    </td>
+                  </tr>
+                  {/* Additional rows with similar structure but different data */}
+                </tbody>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <img
+                          className="h-8 w-8 rounded-full opacity-100"
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Claimant"
+                        />
+                        <div className="ml-3">
+                          <p className="text-sm text-gray-900">Kartik Sharma</p>
+                          <p className="text-xs text-gray-500">ID: 12345</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      News Article
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">16 hr ago </td>
+                    <td className="px-4 py-4">
+                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
+                        Fake News  
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <span className="text-yellow-500 text-sm">Medium</span>
+                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                          <div
+                            className="bg-yellow-500 h-1.5 rounded-full"
+                            style={{ width: "50%" }}
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm">
+                      <button className="text-blue-500 hover:text-blue-400">
+                        View Details
+                      </button>
+                    </td>
+                  </tr>
+                  {/* Additional rows with similar structure but different data */}
+                </tbody>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <img
+                          className="h-8 w-8 rounded-full opacity-100"
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Claimant"
+                        />
+                        <div className="ml-3">
+                          <p className="text-sm text-gray-900">Kartik Sharma</p>
+                          <p className="text-xs text-gray-500">ID: 12345</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      Twitter Post
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">22 hr ago </td>
+                    <td className="px-4 py-4">
+                      <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
+                        True News 
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <span className="text-yellow-500 text-sm">Medium</span>
+                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                          <div
+                            className="bg-yellow-500 h-1.5 rounded-full"
+                            style={{ width: "50%" }}
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm">
+                      <button className="text-blue-500 hover:text-blue-400">
+                        View Details
+                      </button>
+                    </td>
+                  </tr>
+                  {/* Additional rows with similar structure but different data */}
+                </tbody>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-gray-50">
+                    <td className="px-4 py-4">
+                      <div className="flex items-center">
+                        <img
+                          className="h-8 w-8 rounded-full opacity-100"
+                          src="https://avatar.iran.liara.run/public"
+                          alt="Claimant"
+                        />
+                        <div className="ml-3">
+                          <p className="text-sm text-gray-900">Kartik Sharma</p>
+                          <p className="text-xs text-gray-500">ID: 12345</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      Twitter Post
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">2 days ago </td>
+                    <td className="px-4 py-4">
+                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
+                        Fake News 
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -369,12 +530,13 @@ const Dashboard = () => {
                   </tr>
                   {/* Additional rows with similar structure but different data */}
                 </tbody>
+                
               </table>
             </div>
             <div className="p-4 border-t border-gray-200">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-500">
-                  Showing 1-10 of 1,284 claims
+                  Showing 1-5 of 56 claims
                 </p>
                 <div className="flex space-x-2">
                   <button className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-200">
