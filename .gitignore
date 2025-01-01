@@ -1,4 +1,5 @@
 venv
 .env
-truth
 config.ini
+cookies.json
+

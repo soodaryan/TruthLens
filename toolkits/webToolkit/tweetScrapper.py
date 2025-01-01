@@ -12,7 +12,7 @@ nest_asyncio.apply()
 tracemalloc.start()
 
 class TweetScraper:
-    def __init__(self, config_file='config.ini', cookies_file='cookies.json', output_file='tweets.csv', query=None, min_tweets=100):
+    def __init__(self, config_file='/home/hemant/TruthTell/TruthLens/config.ini', cookies_file='/home/hemant/TruthTell/TruthLens/cookies.json', output_file='tweets.csv', query=None, min_tweets=10):
         self.config_file = config_file
         self.cookies_file = cookies_file
         self.output_file = output_file
@@ -65,7 +65,7 @@ class TweetScraper:
         self.create_csv()
         await self.fetch_tweets()
 
-# if __name__ == "__main__":
-#     query = 'your-query-here'  # Assign your query string here
-#     scraper = TweetScraper(query=query)
-#     asyncio.run(scraper.start_scraping())  # Run the asyncio event loop for scraping
+if __name__ == "__main__":
+    query = 'ISRO Satellite'  # Assign your query string here
+    scraper = TweetScraper(query=query)
+    asyncio.run(scraper.start_scraping())  # Run the asyncio event loop for scraping
