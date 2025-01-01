@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ApexCharts from 'apexcharts';
-
+import Sidebar from './Sidebar';
 const ContentAnalysis = () => {
   useEffect(() => {
     // Initialize the ApexCharts content distribution chart
@@ -52,7 +52,9 @@ const ContentAnalysis = () => {
   }, []);
 
   return (
-    <section id="content_analysis" className="p-6">
+    <>
+    <Sidebar />
+    <section id="content_analysis" className="p-6 ml-60">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Main Content Analysis Area */}
         <div className="lg:col-span-8">
@@ -72,8 +74,8 @@ const ContentAnalysis = () => {
                 <span>Verified: 945</span>
               </div>
               <div className="flex items-center bg-yellow-50 text-yellow-700 px-4 py-2 rounded-lg">
-                <i className="fas fa-clock mr-2"></i>
                 <span>Pending: 200</span>
+                <i className="fas fa-clock mr-2"></i>
               </div>
             </div>
             <div id="content-distribution-chart" className="h-80"></div>
@@ -198,7 +200,7 @@ const ContentAnalysis = () => {
                 <div
                   className="bg-primary-600 h-2 rounded-full"
                   style={{ width: '98%' }}
-                ></div>
+                  ></div>
               </div>
               <div className="flex justify-between items-center mt-4">
                 <span className="text-sm text-gray-600">Average Risk</span>
@@ -209,6 +211,7 @@ const ContentAnalysis = () => {
         </div>
       </div>
     </section>
+                  </>
   );
 };
 
