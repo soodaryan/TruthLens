@@ -24,17 +24,26 @@ def upload_media():
             file = request.files[key]
             if file.content_type.startswith('image/'):
                 save_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], file.filename)
+                file.save(save_path)
+                print(f"Saved {file.filename} at {save_path}")
+                run_models(save_path)
             elif file.content_type.startswith('video/'):
                 save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
+                file.save(save_path)
+                print(f"Saved {file.filename} at {save_path}")
+
             else:
                 continue  # Skip unsupported file types
 
-            file.save(save_path)
-            print(f"Saved {file.filename} at {save_path}")
-
+            
         return jsonify({"message": "All media uploaded successfully!"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+
+def run_models(file_path):
+    print()
+
 
 
 if __name__ == '__main__':
