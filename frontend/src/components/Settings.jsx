@@ -1,7 +1,9 @@
 import React from 'react';
-
+import Sidebar from './Sidebar';
 const Settings = () => {
   return (
+    <>
+    <Sidebar />
     <section id="settings" className="p-6 ml-60">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Main Settings Area */}
@@ -170,6 +172,7 @@ const Settings = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

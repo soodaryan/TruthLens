@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ApexCharts from 'apexcharts';
 import { useRef } from 'react';
-
+import Sidebar from './Sidebar';
 const Analytics = () => {
   const trendChartRef = useRef(null);
 
@@ -52,6 +52,8 @@ const Analytics = () => {
   }, []);
 
   return (
+    <>
+    <Sidebar />
     <section className="p-6 ml-60">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
         <div className="p-6 bg-white border rounded-lg">
@@ -143,43 +145,83 @@ const Analytics = () => {
           </div>
         </div>
       </div>
+      <div>
 
-      <div className="p-6 bg-white border rounded-lg">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold text-gray-700">Recent Activities</h3>
-          <button className="text-sm text-primary-600">View All</button>
-        </div>
-        <div className="space-y-4">
-          <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-              <i className="fas fa-exclamation-triangle text-primary-600"></i>
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium">New report submitted</p>
-              <p className="text-xs text-gray-500">2 minutes ago</p>
-            </div>
+      </div>
+      <div className="grid grid-cols-2 gap-6">
+
+        <div className="p-6 bg-white border rounded-lg">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-gray-700">Recent Activities</h3>
+            <button className="text-sm text-primary-600">View All</button>
           </div>
-          <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center">
-              <i className="fas fa-check text-secondary-600"></i>
+          <div className="space-y-4">
+            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                <i className="fas fa-exclamation-triangle text-primary-600"></i>
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium">New report submitted</p>
+                <p className="text-xs text-gray-500">2 minutes ago</p>
+              </div>
             </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium">Source verified</p>
-              <p className="text-xs text-gray-500">15 minutes ago</p>
+            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center">
+                <i className="fas fa-check text-secondary-600"></i>
+              </div>
+              <div className="ml-4">
+                <p className="text-sm font-medium">Source verified</p>
+                <p className="text-xs text-gray-500">15 minutes ago</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent-100 flex items-center justify-center">
-              <i className="fas fa-user text-accent-600"></i>
-            </div>
-            <div className="ml-4">
-              <p className="text-sm font-medium">New moderator added</p>
-              <p className="text-xs text-gray-500">1 hour ago</p>
-            </div>
+            
           </div>
         </div>
+        <div className="bg-white border rounded-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Top Trending Topics</h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                  1
+                </span>
+                <span className="ml-3">Election Integrity</span>
+              </div>
+              <span className="text-sm text-gray-500">2.5k mentions</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                  2
+                </span>
+                <span className="ml-3">Vaccine Safety</span>
+              </div>
+              <span className="text-sm text-gray-500">1.8k mentions</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                  3
+                </span>
+                <span className="ml-3">Climate Change</span>
+              </div>
+              <span className="text-sm text-gray-500">1.2k mentions</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                  3
+                </span>
+                <span className="ml-3">Manmohan singh Demise</span>
+              </div>
+              <span className="text-sm text-gray-500">2 k mentions</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import './Sidebar.css';
-
+import logo from './images/TruthLens.png';
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -34,23 +34,23 @@ const Sidebar = () => {
         id="sidebar" 
         className={`sidebar ${isMobileMenuOpen ? 'mobile-open' : ''}`}
       >
-        <div className="sidebar-header">
+        <div className="bg-[#212A31] sidebar-header">
           <img 
-            src="https://placehold.co/40x40?text=M" 
+            src={logo} 
             alt="Logo" 
             className="sidebar-logo"
           />
-          <span className="sidebar-title">Misinform</span>
+          <span className="sidebar-title">TruthLens</span>
         </div>
         
-        <div className="sidebar-nav">
+        <div className="bg-[#212A31] sidebar-nav">
           {/* Using Link to navigate to different pages */}
-          <Link to="/" onClick={handleNavLinkClick} className="active">
-            <i className="fas fa-chart-line"></i>
+          <Link to="/dashboard" onClick={handleNavLinkClick} className="active">
+            <i className="bg-[#212A31]  fas fa-chart-line"></i>
             <span>Overview</span>
           </Link>
           <Link to="/input" onClick={handleNavLinkClick} className="active">
-            <i className="fas fa-chart-line"></i>
+            <i className="bg-[#212A31]  fas fa-chart-line"></i>
             <span>Input</span>
           </Link>
           <Link to="/content-analysis" onClick={handleNavLinkClick}>
@@ -61,25 +61,9 @@ const Sidebar = () => {
             <i className="fas fa-file-alt"></i>
             <span>Analytics</span>
           </Link>
-          {/* <Link to="/reports" onClick={handleNavLinkClick}>
-            <i className="fas fa-flag"></i>
-            <span>Reports</span>
-          </Link> */}
-          <Link to="/trend-analysis" onClick={handleNavLinkClick}>
+          <Link to="/trend-and-report" onClick={handleNavLinkClick}>
             <i className="fas fa-chart-bar"></i>
             <span>Trends And Reports</span>
-          </Link>
-          <Link to="/ai-insights" onClick={handleNavLinkClick}>
-            <i className="fas fa-brain"></i>
-            <span>Insights</span>
-          </Link>
-          <Link to="/moderation-queue" onClick={handleNavLinkClick}>
-            <i className="fas fa-brain"></i>
-            <span>Moderation</span>
-          </Link>
-          <Link to="/report-generation" onClick={handleNavLinkClick}>
-            <i className="fas fa-brain"></i>
-            <span>ReportS</span>
           </Link>
           <Link to="/settings" onClick={handleNavLinkClick}>
             <i className="fas fa-brain"></i>
