@@ -26,9 +26,8 @@ class CloudinaryPost:
         response = cloudinary.uploader.upload(image_url)
         return response        
 
-# if __name__ == "__main__":
-#     hehe = CloudinaryPost()
-#     img_path = "/Users/vishrutgrover/coding/truthlens/TruthLens/images/deepfake.png"
-#     response = hehe.upload(img_path)
-
-#     print(response['secure_url'])
+if __name__ == "__main__":
+    hehe = CloudinaryPost()
+    img_path = "/Users/vishrutgrover/coding/truthlens/TruthLens/images/deepfake.png"
+    response = hehe.upload(img_path)
+    print(response['secure_url'])
