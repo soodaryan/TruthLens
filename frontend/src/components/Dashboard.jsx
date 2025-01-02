@@ -134,7 +134,7 @@ const Dashboard = () => {
                     Kartik Sharma
                   </h3>
                   <p className="text-neutral-700" id="el-safedpgm">
-                    Brdcster ID: TL-117
+                    Broadcaster ID: TL-117
                   </p>
                 </div>
                 <div
@@ -287,7 +287,7 @@ const Dashboard = () => {
                   <h3 className="text-lg font-semibold">Fake News Demographics</h3>
                   <div className="flex gap-2">
                     <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">24h</button>
-                    <button className="px-4 py-2 text-sm bg-primary-600 text-white rounded-lg">7d</button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">7d</button>
                     <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">30d</button>
                   </div>
                 </div>
@@ -350,7 +350,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -393,7 +393,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -436,7 +436,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -479,7 +479,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -522,7 +522,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>

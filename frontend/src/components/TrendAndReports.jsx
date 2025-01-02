@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ApexCharts from "apexcharts";
 import image from "./images/InpImg.png";
-import image2 from "./images/InpImg2.png";
+import image2 from "./images/fakeimage.jpg";
 import video from "./images/diljitdosanghpmmodi.mp4";
 import audio from "./images/diljitdosanjhaudio.mp3";
 import Sidebar from "./Sidebar";
@@ -10,25 +10,25 @@ const TrendAnalysis = () => {
   const reports = [
     {
       reporter: "Image",
-      category: "Diljith dosanjh meets PM Modi",
+      category: "Diljith Dosanjh meets PM Modi",
       status: "True News",
       statusColor: "green",
     },
     {
       reporter: "Image",
-      category: "Youtube",
-      status: "True News",
-      statusColor: "green",
+      category: "UFO spotted in open sky ",
+      status: "False News",
+      statusColor: "red",
     },
     {
       reporter: "Video",
-      category: "Youtube",
+      category: "Farmers are angry with Diljit Dosanjh",
       status: "True News",
       statusColor: "green",
     },
     {
       reporter: "Audio",
-      category: "Twitter",
+      category: "दिल्ली में प्रधानमंत्री मोदी से सिंगर दिलजीत दोसांझ की मुलाकात हुई है।",
       status: "True News",
       statusColor: "green",
     },
@@ -103,7 +103,7 @@ const TrendAnalysis = () => {
                 Reports and Analysis
               </h3>
               <div className="overflow-x-auto">
-                <table className="w-[600px]">
+                <table className="w-[680px]">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-semibold">
