@@ -92,7 +92,7 @@ const InputForm = () => {
       <Sidebar />
       <div className="bg-gray-100 text-gray-900 flex justify-center">
         <div className="ml-80 mr-20 mt-10 bg-white border border-gray-300 rounded-lg p-6 w-full shadow-lg">
-          <h2 className="text-lg font-semibold mb-6">Input Details</h2>
+          <h2 className="text-black font-semibold mb-6">Input Details</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Text Input */}
             <div>
