@@ -158,12 +158,6 @@ const TrendAnalysis = () => {
                   </ul>
                 </li>
                 <li className="text-sm">
-                  <strong>Transcription Of Video: </strong>
-                  <ul className="pl-4 list-disc">
-                    <li>Diljit Dosanjh meets the Prime Minister of India.</li>
-                  </ul>
-                </li>
-                <li className="text-sm">
                   <strong>Sentiment Analysis:</strong>
                   <ul className="pl-4 list-disc">
                     <li><strong>Overall Sentiment:</strong> Positive</li>
@@ -172,7 +166,7 @@ const TrendAnalysis = () => {
                 <li className="text-sm">
                   <strong>Deepfake Analysis:</strong>
                   <ul className="pl-4 list-disc">
-                    <li><strong>Image Deepfake:</strong> Real Image</li>
+                    <li><strong>Image Deepfake:</strong> Fake Image</li>
                     <li><strong>Audio Deepfake:</strong> Real Audio</li>
                   </ul>
                 </li>
