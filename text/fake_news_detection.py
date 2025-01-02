@@ -1,9 +1,9 @@
-from transformers import pipeline
-MODEL = "jy46604790/Fake-News-Bert-Detect"
-clf = pipeline("text-classification", model=MODEL, tokenizer=MODEL)
+# from transformers import pipeline
+# MODEL = "jy46604790/Fake-News-Bert-Detect"
+# clf = pipeline("text-classification", model=MODEL, tokenizer=MODEL)
 
-text = """
-"""
+# text = """
+# """
 
-result = clf(text)
-print(result)
+# result = clf(text)
+# print(result)

@@ -20,3 +20,5 @@ python-dotenv
 cloudinary
 flask
 flask_cors
+
+twikit

@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-class OpenAI:
+class OnDemandOpenAI:
     def __init__(self):
         api_key = os.getenv('ON_DEMAND_API_KEY')
 
