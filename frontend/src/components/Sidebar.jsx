@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import './Sidebar.css';
 import logo from './images/TruthLens.png';
+import image from './images/manImg.png';
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -46,17 +47,17 @@ const Sidebar = () => {
         <div className="bg-[#212A31] sidebar-nav">
           {/* Using Link to navigate to different pages */}
           <Link to="/dashboard" onClick={handleNavLinkClick} className="active">
-            <i className="bg-[#212A31]  fas fa-chart-line"></i>
+            <i className="fas fa-file-alt"></i>
             <span>Overview</span>
           </Link>
           <Link to="/input" onClick={handleNavLinkClick} className="active">
-            <i className="bg-[#212A31]  fas fa-chart-line"></i>
+            <i className="fas fa-file-alt"></i>
             <span>Input</span>
           </Link>
-          <Link to="/content-analysis" onClick={handleNavLinkClick}>
+          {/* <Link to="/content-analysis" onClick={handleNavLinkClick}>
             <i className="fas fa-file-alt"></i>
             <span>Content</span>
-          </Link>
+          </Link> */}
           <Link to="/analytics" onClick={handleNavLinkClick}>
             <i className="fas fa-file-alt"></i>
             <span>Analytics</span>
@@ -74,13 +75,13 @@ const Sidebar = () => {
         <div className="sidebar-footer">
           <div className="user-info">
             <img 
-              src="https://avatar.iran.liara.run/public" 
+              src={image} 
               alt="User Avatar" 
               className="user-avatar"
             />
             <div className="user-details">
-              <p className="user-name">Admin User</p>
-              <p className="user-email">admin@misinform.ai</p>
+              <p className="user-name">Kartik Sharma</p>
+              <p className="user-email">kartiksh@truthlens.ai</p>
             </div>
           </div>
         </div>

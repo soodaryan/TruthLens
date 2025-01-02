@@ -24,7 +24,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/input" element={<InputForm />} />
             <Route path="/analytics" element={<Analytics />} />
-            <Route path="/content-analysis" element={<ContentAnalysis />} />
+            {/* <Route path="/content-analysis" element={<ContentAnalysis />} /> */}
             <Route path="/trend-and-report" element={<TrendAnalysis />} />
             <Route path="/settings" element={<Settings />} />
           </Routes>
