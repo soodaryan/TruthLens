@@ -343,14 +343,10 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        <img
-                          className="h-8 w-8 rounded-full opacity-100"
-                          src="https://avatar.iran.liara.run/public"
-                          alt="Claimant"
-                        />
+                        
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: TL-117</p>
+                          <p className="text-sm text-gray-900">Sumedha Aggarwal</p>
+                          <p className="text-xs text-gray-500">ID: TL-60</p>
                         </div>
                       </div>
                     </td>
@@ -386,14 +382,9 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        <img
-                          className="h-8 w-8 rounded-full opacity-100"
-                          src="https://avatar.iran.liara.run/public"
-                          alt="Claimant"
-                        />
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: TL-117</p>
+                          <p className="text-sm text-gray-900">Sanjay Verma</p>
+                          <p className="text-xs text-gray-500">ID: TL-147</p>
                         </div>
                       </div>
                     </td>
@@ -429,11 +420,6 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        <img
-                          className="h-8 w-8 rounded-full opacity-100"
-                          src="https://avatar.iran.liara.run/public"
-                          alt="Claimant"
-                        />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
                           <p className="text-xs text-gray-500">ID: TL-117</p>
@@ -472,14 +458,9 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        <img
-                          className="h-8 w-8 rounded-full opacity-100"
-                          src="https://avatar.iran.liara.run/public"
-                          alt="Claimant"
-                        />
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: TL-117</p>
+                          <p className="text-sm text-gray-900">Gurkeerat Singh</p>
+                          <p className="text-xs text-gray-500">ID: TL-101</p>
                         </div>
                       </div>
                     </td>
@@ -515,11 +496,6 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        <img
-                          className="h-8 w-8 rounded-full opacity-100"
-                          src="https://avatar.iran.liara.run/public"
-                          alt="Claimant"
-                        />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
                           <p className="text-xs text-gray-500">ID: TL-117</p>

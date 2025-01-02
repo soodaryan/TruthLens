@@ -240,7 +240,7 @@ const TrendAnalysis = () => {
 
 
       </section>
-      <section className="ml-80 mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="ml-[22%] mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
 
           <div className="bg-white border rounded-lg p-6">
             <h3 className="text-lg font-semibold mb-4">Information form Trusted Sources</h3>
@@ -270,7 +270,7 @@ const TrendAnalysis = () => {
           </div>
           
         
-        <div className="mr-20 bg-white border rounded-lg p-6 font-semibold h-40">
+        <div className="mr-[7%] bg-white border rounded-lg p-6 font-semibold h-40">
             Reports of the input Information have been analyzed and matches with our Trusted Sources. 
             Therefore it is  <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">VERIFIED</span> News 
           </div>
