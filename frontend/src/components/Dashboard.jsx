@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import ApexCharts from "apexcharts";
-
+import image from "./images/manImg.png"
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
 
@@ -124,7 +124,7 @@ const Dashboard = () => {
               <div className="bg-white text-center space-y-4" id="el-ssmu59bz">
                 <img
                   className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
-                  src="https://avatar.iran.liara.run/public"
+                  src={image}
                   alt="Profile"
                   loading="lazy"
                   id="el-amo17jis"
@@ -409,7 +409,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <span className="text-green-500 text-sm">High</span>
-                        
+                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                          <div
+                            className="bg-green-500 h-1.5 rounded-full"
+                            style={{ width: "85%" }}
+                          ></div>
+                        </div>
                       </div>
                     </td>
                     <td className="px-4 py-4 text-sm">

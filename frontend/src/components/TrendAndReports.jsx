@@ -1,18 +1,18 @@
 import React, { useEffect } from "react";
 import ApexCharts from "apexcharts";
-import image from "./images/deepfake.png";
-import image2 from "./images/aajtak.jpg";
-import video from "./images/realnews.mp4";
-import audio from "./images/fakevoice.mp3";
+import image from "./images/InpImg.png";
+import image2 from "./images/InpImg2.png";
+import video from "./images/diljitdosanghpmmodi.mp4";
+import audio from "./images/diljitdosanjhaudio.mp3";
 import Sidebar from "./Sidebar";
 
 const TrendAnalysis = () => {
   const reports = [
     {
       reporter: "Image",
-      category: "Twitter",
-      status: "Fake News",
-      statusColor: "red",
+      category: "Diljith dosanjh meets PM Modi",
+      status: "True News",
+      statusColor: "green",
     },
     {
       reporter: "Image",
@@ -32,24 +32,6 @@ const TrendAnalysis = () => {
       status: "True News",
       statusColor: "green",
     },
-  ];
-
-  const videos = [
-    "https://www.w3schools.com/html/mov_bbb.mp4",
-  ];
-  const audios = [
-    "https://www.w3schools.com/html/mov_bbb.mp3",
-  ];
-  const extractedInfo = [
-    "Extracted text - 7 बजे 100 ख़बर",
-    "Insight 2: Source reliability has improved by 15%.",
-    "Insight 3: Key trends show a rise in user engagement.",
-    "Insight 4: Reports flagged for further review increased.",
-    "Insight 1: AI-driven patterns identified.",
-    "Insight 2: Source reliability has improved by 15%.",
-    "Insight 3: Key trends show a rise in user engagement.",
-    "Insight 4: Reports flagged for further review increased.",
-    "Insight 4: Reports flagged for further review increased.",
   ];
 
   useEffect(() => {
@@ -121,14 +103,14 @@ const TrendAnalysis = () => {
                 Reports and Analysis
               </h3>
               <div className="overflow-x-auto">
-                <table className="w-[500px]">
+                <table className="w-[600px]">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-semibold">
                         News Type
                       </th>
-                      <th className="text-left py-3 px-4 font-semibold">
-                        Source
+                      <th className="text-left py-3 px-4 font-semibold w-[200px]">
+                        Insights
                       </th>
                       <th className="text-left py-3 px-4 font-semibold">
                         Status
@@ -143,11 +125,10 @@ const TrendAnalysis = () => {
                       <tr key={index} className="border-b hover:bg-gray-50">
                         <td className="py-3 px-4">
                           <div className="flex items-center">
-
                             <span>{report.reporter}</span>
                           </div>
                         </td>
-                        <td className="py-3 px-4">{report.category}</td>
+                        <td className="py-3 px-4 w-[200px] break-words">{report.category}</td>
                         <td className="py-3 px-4">
                           <span
                             className={`px-2 py-1 bg-${report.statusColor}-100 text-${report.statusColor}-800 rounded-full text-xs`}
@@ -155,7 +136,7 @@ const TrendAnalysis = () => {
                             {report.status}
                           </span>
                         </td>
-                        <td className="py-3 px-4">
+                        <td className="py-3 px-4 text-blue-400">
                           <button className="text-primary-600 hover:text-primary-800">
                             View Report
                           </button>
@@ -167,15 +148,42 @@ const TrendAnalysis = () => {
               </div>
             </div>
             <div className="bg-white border rounded-lg p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                Extracted Information
-              </h3>
+              <h3 className="text-lg font-semibold mb-4">Extracted Information</h3>
               <ul className="space-y-5">
-                {extractedInfo.map((info, index) => (
-                  <li key={index} className="text-sm">
-                    {info}
-                  </li>
-                ))}
+                <li className="text-sm">
+                  <strong>Named Entity Recognition (NER):</strong>
+                  <ul className="pl-4 list-disc">
+                    <li><strong>Person:</strong> Diljit Dosanjh, Prime Minister of India</li>
+                    <li><strong>Organization:</strong> Government of India, Prime Minister's Office</li>
+                  </ul>
+                </li>
+                <li className="text-sm">
+                  <strong>Transcription Of Video: </strong>
+                  <ul className="pl-4 list-disc">
+                    <li>Diljit Dosanjh meets the Prime Minister of India.</li>
+                  </ul>
+                </li>
+                <li className="text-sm">
+                  <strong>Sentiment Analysis:</strong>
+                  <ul className="pl-4 list-disc">
+                    <li><strong>Overall Sentiment:</strong> Positive</li>
+                  </ul>
+                </li>
+                <li className="text-sm">
+                  <strong>Deepfake Analysis:</strong>
+                  <ul className="pl-4 list-disc">
+                    <li><strong>Image Deepfake:</strong> Real Image</li>
+                    <li><strong>Audio Deepfake:</strong> Real Audio</li>
+                  </ul>
+                </li>
+                <li className="text-sm">
+                  <strong>Insights drawn from Graphics:</strong>
+                  <ul className="pl-4 list-disc">
+                    <li> Diljit Dosanjh meets the Prime Minister of India.</li>
+                    <li> Diljit: Fantastic start to 2025 </li>
+                    <li> Gambhir to Team: Bahut ho gaya  </li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>

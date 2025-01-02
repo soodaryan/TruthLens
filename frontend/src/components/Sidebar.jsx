@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
 import './Sidebar.css';
 import logo from './images/TruthLens.png';
+import image from './images/manImg.png';
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -74,13 +75,13 @@ const Sidebar = () => {
         <div className="sidebar-footer">
           <div className="user-info">
             <img 
-              src="https://avatar.iran.liara.run/public" 
+              src={image} 
               alt="User Avatar" 
               className="user-avatar"
             />
             <div className="user-details">
-              <p className="user-name">Admin User</p>
-              <p className="user-email">admin@misinform.ai</p>
+              <p className="user-name">Kartik Sharma</p>
+              <p className="user-email">kartiksh@truthlens.ai</p>
             </div>
           </div>
         </div>

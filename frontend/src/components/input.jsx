@@ -62,7 +62,9 @@ const InputForm = () => {
     });
     formData.append("textInput", textInput);
     formData.append("relatedLinks", JSON.stringify(relatedLinks));
-
+    setTimeout(() => {
+      navigate("/trend-and-report");
+    }, 5000);
     try {
       // Send the data to the backend
       const response = await fetch("http://127.0.0.1:5000/upload-media", {
@@ -74,9 +76,7 @@ const InputForm = () => {
         const result = await response.json();
         console.log("Upload successful:", result.message);
 
-        setTimeout(() => {
-          navigate("/trend-and-report");
-        }, 10000);
+
       } else {
         console.error("Failed to upload media");
       }
@@ -90,8 +90,8 @@ const InputForm = () => {
   return (
     <>
       <Sidebar />
-      <div className="bg-gray-900 text-gray-100 min-h-screen flex justify-center items-center">
-        <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 w-full">
+      <div className="bg-gray-100 text-gray-900 flex justify-center">
+        <div className="ml-80 mr-20 mt-10 bg-white border border-gray-300 rounded-lg p-6 w-full shadow-lg">
           <h2 className="text-lg font-semibold mb-6">Input Details</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Text Input */}
@@ -103,7 +103,7 @@ const InputForm = () => {
                 id="textInput"
                 value={textInput}
                 onChange={(e) => setTextInput(e.target.value)}
-                className="block w-full border border-gray-600 bg-gray-700 rounded-lg p-2 text-gray-100"
+                className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
                 rows="4"
                 placeholder="Enter additional text details here..."
               ></textarea>
@@ -120,11 +120,16 @@ const InputForm = () => {
                 accept="image/*"
                 multiple
                 onChange={handleImageChange}
-                className="block w-full border border-gray-600 bg-gray-700 rounded-lg p-2 text-gray-100"
+                className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
               />
               <div className="grid grid-cols-5 gap-4 mt-4">
                 {imageUrls.map((url, index) => (
-                  <img key={index} src={url} alt={`Uploaded ${index + 1}`} className="rounded-lg h-32 object-cover" />
+                  <img
+                    key={index}
+                    src={url}
+                    alt={`Uploaded ${index + 1}`}
+                    className="rounded-lg h-32 object-cover border border-gray-300"
+                  />
                 ))}
               </div>
             </div>
@@ -140,11 +145,16 @@ const InputForm = () => {
                 accept="video/*"
                 multiple
                 onChange={handleVideoChange}
-                className="block w-full border border-gray-600 bg-gray-700 rounded-lg p-2 text-gray-100"
+                className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
               />
               <div className="grid grid-cols-1 gap-4 mt-4">
                 {videoUrls.map((url, index) => (
-                  <video key={index} controls className="rounded-lg w-full h-32 object-cover" src={url} />
+                  <video
+                    key={index}
+                    controls
+                    className="rounded-lg w-full h-32 object-cover border border-gray-300"
+                    src={url}
+                  />
                 ))}
               </div>
             </div>
@@ -160,7 +170,7 @@ const InputForm = () => {
                 accept="audio/*"
                 multiple
                 onChange={handleAudioChange}
-                className="block w-full border border-gray-600 bg-gray-700 rounded-lg p-2 text-gray-100"
+                className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
               />
               <div className="mt-4 space-y-2">
                 {audioUrls.map((url, index) => (
@@ -180,20 +190,20 @@ const InputForm = () => {
                   id="relatedLinks"
                   value={linkInput}
                   onChange={(e) => setLinkInput(e.target.value)}
-                  className="block w-full border border-gray-600 bg-gray-700 rounded-lg p-2 text-gray-100"
+                  className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
                   placeholder="Enter a URL"
                 />
                 <button
                   type="button"
                   onClick={handleLinkAdd}
-                  className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-800 transition"
+                  className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
                 >
                   Add
                 </button>
               </div>
               <ul className="mt-4 list-disc list-inside space-y-1">
                 {relatedLinks.map((link, index) => (
-                  <li key={index} className="text-blue-400 hover:underline">
+                  <li key={index} className="text-blue-500 hover:underline">
                     <a href={link} target="_blank" rel="noopener noreferrer">
                       {link}
                     </a>
@@ -205,20 +215,20 @@ const InputForm = () => {
             {/* Submit Button */}
             <div>
               {isLoading ? (
-                <div className="fixed inset-0 flex items-center justify-center bg-white/80 backdrop-blur-sm z-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-gray-100/80 backdrop-blur-sm z-50">
                   <div className="text-center">
-                    <div className="relative w-16 h-16">
-                      {/* Multiple spinning rings */}
-                      <div className="absolute inset-0 border-4 border-t-primary-600 rounded-full animate-[spin_1s_linear_infinite]"></div>
-                      <div className="absolute inset-1 border-4 border-t-primary-500 rounded-full animate-[spin_1.2s_linear_infinite]"></div>
-                      <div className="absolute inset-2 border-4 border-t-primary-400 rounded-full animate-[spin_1.4s_linear_infinite]"></div>
-                    </div>
+                  <div className="relative w-16 h-16">
+  {/* Gradient spinning rings */}
+  <div className="absolute inset-0 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin"></div>
+  <div className="absolute inset-1 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-pink-500 via-orange-500 to-yellow-500 animate-spin-slow"></div>
+  <div className="absolute inset-2 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-yellow-500 via-green-500 to-blue-500 animate-spin-slower"></div>
+</div>
                     <div className="mt-4 space-y-2">
-                      <p className="text-lg font-medium text-gray-700 animate-pulse">Uploading</p>
+                      <p className="text-lg font-medium text-gray-600 animate-pulse">Uploading</p>
                       <div className="flex justify-center gap-1">
-                        <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce"></span>
-                        <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-100"></span>
-                        <span className="w-1 h-1 bg-gray-500 rounded-full animate-bounce delay-200"></span>
+                        <span className="w-1 h-1 bg-gray-400 rounded-full animate-bounce"></span>
+                        <span className="w-1 h-1 bg-gray-400 rounded-full animate-bounce delay-100"></span>
+                        <span className="w-1 h-1 bg-gray-400 rounded-full animate-bounce delay-200"></span>
                       </div>
                     </div>
                   </div>
@@ -227,16 +237,16 @@ const InputForm = () => {
                 <button
                   type="button"
                   onClick={handleSubmit}
-                  className="w-full bg-primary-600 text-white font-medium py-2 rounded-lg hover:bg-primary-800 transition"
+                  className="w-full bg-primary-500 text-black font-medium py-2 rounded-lg hover:bg-primary-700 transition"
                 >
                   Submit
                 </button>
               )}
             </div>
-
           </form>
         </div>
       </div>
+
     </>
   );
 };
