@@ -53,10 +53,10 @@ const Sidebar = () => {
             <i className="bg-[#212A31]  fas fa-chart-line"></i>
             <span>Input</span>
           </Link>
-          <Link to="/content-analysis" onClick={handleNavLinkClick}>
+          {/* <Link to="/content-analysis" onClick={handleNavLinkClick}>
             <i className="fas fa-file-alt"></i>
             <span>Content</span>
-          </Link>
+          </Link> */}
           <Link to="/analytics" onClick={handleNavLinkClick}>
             <i className="fas fa-file-alt"></i>
             <span>Analytics</span>

@@ -133,8 +133,8 @@ const Dashboard = () => {
                   <h3 className="text-lg font-medium text-black" id="el-30dimsth">
                     Kartik Sharma
                   </h3>
-                  <p className="text-neutral-300" id="el-safedpgm">
-                    User ID - 12345
+                  <p className="text-neutral-700" id="el-safedpgm">
+                    Brdcster ID: TL-117
                   </p>
                 </div>
                 <div
@@ -157,10 +157,34 @@ const Dashboard = () => {
                     </div>
                     <div id="el-004cboiw">
                       <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
-                        Cases Handled
+                        News Enquired
                       </dt>
                       <dd className="text-black" id="el-zn9s32tb">
                         130
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        News Channel
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        Aajtak News
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        News Channel ID
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        AT-130
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        Role
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        Broadcaster
                       </dd>
                     </div>
                   </dl>
