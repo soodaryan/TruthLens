@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import ApexCharts from "apexcharts";
-
+import image from "./images/manImg.png"
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
 
@@ -124,7 +124,7 @@ const Dashboard = () => {
               <div className="bg-white text-center space-y-4" id="el-ssmu59bz">
                 <img
                   className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
-                  src="https://avatar.iran.liara.run/public"
+                  src={image}
                   alt="Profile"
                   loading="lazy"
                   id="el-amo17jis"
@@ -133,8 +133,8 @@ const Dashboard = () => {
                   <h3 className="text-lg font-medium text-black" id="el-30dimsth">
                     Kartik Sharma
                   </h3>
-                  <p className="text-neutral-300" id="el-safedpgm">
-                    User ID - 12345
+                  <p className="text-neutral-700" id="el-safedpgm">
+                    Broadcaster ID: TL-117
                   </p>
                 </div>
                 <div
@@ -157,10 +157,34 @@ const Dashboard = () => {
                     </div>
                     <div id="el-004cboiw">
                       <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
-                        Cases Handled
+                        News Enquired
                       </dt>
                       <dd className="text-black" id="el-zn9s32tb">
                         130
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        News Channel
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        Aajtak News
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        News Channel ID
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        AT-130
+                      </dd>
+                    </div>
+                    <div id="el-004cboiw">
+                      <dt className="text-sm text-neutral-700" id="el-jalpjl9j">
+                        Role
+                      </dt>
+                      <dd className="text-black" id="el-zn9s32tb">
+                        Broadcaster
                       </dd>
                     </div>
                   </dl>
@@ -263,7 +287,7 @@ const Dashboard = () => {
                   <h3 className="text-lg font-semibold">Fake News Demographics</h3>
                   <div className="flex gap-2">
                     <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">24h</button>
-                    <button className="px-4 py-2 text-sm bg-primary-600 text-white rounded-lg">7d</button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">7d</button>
                     <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">30d</button>
                   </div>
                 </div>
@@ -326,7 +350,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -369,7 +393,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -412,7 +436,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -455,7 +479,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
@@ -498,7 +522,7 @@ const Dashboard = () => {
                         />
                         <div className="ml-3">
                           <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: 12345</p>
+                          <p className="text-xs text-gray-500">ID: TL-117</p>
                         </div>
                       </div>
                     </td>
