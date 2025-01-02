@@ -7,7 +7,7 @@ dotenv_path = find_dotenv()
 load_dotenv(dotenv_path)
 
 
-class TwitterScraper:
+class TwitterHandleScraper:
     def __init__(self, handle, api_token):
         self.handle = handle
         self.api_token = api_token
@@ -59,8 +59,8 @@ class TweetSaver:
             print(f"Error saving data to CSV: {e}")
 
 
-if __name__ == "__main__":
-    twitter_scraper = TwitterScraper(handle=os.getenv("TWITTER_HANDLE"), api_token=os.getenv("TWITTER_HANDLE_API"))
-    tweets = twitter_scraper.scrape()
-    if tweets:
-        TweetSaver.save(tweets)
+# if __name__ == "__main__":
+#     twitter_scraper = TwitterHandleScraper(handle=os.getenv("TWITTER_HANDLE"), api_token=os.getenv("TWITTER_HANDLE_API"))
+#     tweets = twitter_scraper.scrape()
+#     if tweets:
+#         TweetSaver.save(tweets)

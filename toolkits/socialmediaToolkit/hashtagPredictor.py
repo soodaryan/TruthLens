@@ -3,13 +3,13 @@ import warnings
 # Suppress the specific warning related to LibreSSL
 warnings.filterwarnings("ignore")
 
-from TruthLens.lib import OpenAI
-from TruthLens.lib import hashtag_predictor_prompt
+from lib.llms import OnDemandOpenAI
+from lib.prompts import hashtag_predictor_prompt
 
 
 class HashtagPredictor:
     def __init__(self):
-        self.openai = OpenAI()
+        self.openai = OnDemandOpenAI()
 
     def _generate_prompt(self, query):
         """Formats the prompt using the query."""
