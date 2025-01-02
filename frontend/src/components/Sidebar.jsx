@@ -46,11 +46,11 @@ const Sidebar = () => {
         <div className="bg-[#212A31] sidebar-nav">
           {/* Using Link to navigate to different pages */}
           <Link to="/dashboard" onClick={handleNavLinkClick} className="active">
-            <i className="bg-[#212A31]  fas fa-chart-line"></i>
+            <i className="fas fa-file-alt"></i>
             <span>Overview</span>
           </Link>
           <Link to="/input" onClick={handleNavLinkClick} className="active">
-            <i className="bg-[#212A31]  fas fa-chart-line"></i>
+            <i className="fas fa-file-alt"></i>
             <span>Input</span>
           </Link>
           {/* <Link to="/content-analysis" onClick={handleNavLinkClick}>

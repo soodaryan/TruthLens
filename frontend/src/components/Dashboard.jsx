@@ -409,12 +409,7 @@ const Dashboard = () => {
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <span className="text-green-500 text-sm">High</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-green-500 h-1.5 rounded-full"
-                            style={{ width: "85%" }}
-                          ></div>
-                        </div>
+                        
                       </div>
                     </td>
                     <td className="px-4 py-4 text-sm">

@@ -90,7 +90,7 @@ const Analytics = () => {
             <p className="text-sm opacity-80 mt-2">-1.4% from last month</p>
           </div>
 
-          
+
         </div>
 
 
@@ -114,11 +114,15 @@ const Analytics = () => {
                 <div className="w-full">
                   <div className="flex justify-between mb-1">
                     <span className="text-sm">Politics</span>
-                    <span className="text-sm font-medium">70%</span>
+                    <span className="text-sm font-medium">75%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-primary-500 rounded-full" style={{ width: '70%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-green-500 h-1.5 rounded-full"
+                      style={{ width: "75%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
               <div className="flex items-center">
@@ -127,9 +131,13 @@ const Analytics = () => {
                     <span className="text-sm">Health</span>
                     <span className="text-sm font-medium">32%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-secondary-500 rounded-full" style={{ width: '32%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-red-500 h-1.5 rounded-full"
+                      style={{ width: "32%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
               <div className="flex items-center">
@@ -138,9 +146,13 @@ const Analytics = () => {
                     <span className="text-sm">Technology</span>
                     <span className="text-sm font-medium">40%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-accent-500 rounded-full" style={{ width: '40%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-yellow-500 h-1.5 rounded-full"
+                      style={{ width: "40%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
               <div className="flex items-center">
@@ -149,9 +161,13 @@ const Analytics = () => {
                     <span className="text-sm">Finance</span>
                     <span className="text-sm font-medium">60%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-primary-500 rounded-full" style={{ width: '60%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-green-500 h-1.5 rounded-full"
+                      style={{ width: "60%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
               <div className="flex items-center">
@@ -160,9 +176,13 @@ const Analytics = () => {
                     <span className="text-sm">Cricket</span>
                     <span className="text-sm font-medium">50%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-primary-500 rounded-full" style={{ width: '50%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-yellow-500 h-1.5 rounded-full"
+                      style={{ width: "50%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
               <div className="flex items-center">
@@ -171,9 +191,13 @@ const Analytics = () => {
                     <span className="text-sm">Education</span>
                     <span className="text-sm font-medium">15%</span>
                   </div>
-                  <div className="h-2 bg-gray-200 rounded-full">
-                    <div className="h-2 bg-primary-500 rounded-full" style={{ width: '15%' }}></div>
+                  <div className="w-200 bg-gray-200 rounded-full h-1.5">
+                    <div
+                      className="bg-red-500 h-1.5 rounded-full"
+                      style={{ width: "15%" }}
+                    ></div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -184,31 +208,54 @@ const Analytics = () => {
         </div>
         <div className="grid grid-cols-2 gap-6">
 
-          <div className="p-6 bg-white border rounded-lg">
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-lg font-semibold text-gray-700">Recent Activities</h3>
-              <button className="text-sm text-primary-600">View All</button>
+          <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-800">Recent Activities</h3>
+              <button className="text-sm text-primary-600 hover:underline">View All</button>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                  <i className="fas fa-exclamation-triangle text-primary-600"></i>
+              <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                <div className="flex-shrink-0 bg-blue-500/10 rounded-lg p-3">
+                  <svg
+                    className="h-6 w-6 text-blue-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    />
+                  </svg>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium">New report submitted</p>
+                  <p className="text-sm font-medium text-gray-800">New report submitted</p>
                   <p className="text-xs text-gray-500">2 minutes ago</p>
                 </div>
               </div>
-              <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary-100 flex items-center justify-center">
-                  <i className="fas fa-check text-secondary-600"></i>
+              <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                <div className="flex-shrink-0 bg-green-500/10 rounded-lg p-3">
+                  <svg
+                    className="h-6 w-6 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2l4-4m0 0l4-4m-8 8l4-4M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm font-medium">Source verified</p>
+                  <p className="text-sm font-medium text-gray-800">Source verified</p>
                   <p className="text-xs text-gray-500">15 minutes ago</p>
                 </div>
               </div>
-
             </div>
           </div>
           <div className="bg-white border rounded-lg p-6">
