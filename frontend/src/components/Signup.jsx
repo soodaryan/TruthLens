@@ -31,7 +31,6 @@ const SignupForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('User data submitted:', formData);
-    // Redirect to dashboard or show a success message
   };
 
   const navigate = useNavigate();
@@ -71,14 +70,6 @@ const SignupForm = () => {
           />
           <input
             type="text"
-            name="pan"
-            placeholder="Pan Number"
-            value={formData.pan}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
             name="address"
             placeholder="Address"
             value={formData.address}
@@ -88,7 +79,7 @@ const SignupForm = () => {
 
           {/* File Upload Section */}
           <div className="file-input-container">
-            <label>Upload Aadhar Card, Policy and Bills (PDF's)</label>
+            <label>Upload your work Id  (PDF's)</label>
             <input
               type="file"
               accept=".pdf"
