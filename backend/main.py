@@ -6,7 +6,7 @@ import asyncio
 from images.graphicDetails import ImageProcessor
 from images.cloudi import CloudinaryPost
 
-# from text.fake_news_detection import
+from text.BERT_NLI_fakenews import TextClassifier
 from text.text_ner import NERExtractor
 from text.text_sentiment import SentimentAnalyzer
 
@@ -82,7 +82,12 @@ def run_models(file_path):
     # # TEXT
 
     # # fake_news_detector nli (to train)
-    
+    # classifier = TextClassifier(model_name="vishgg/nli-xlm-roberta", tokenizer_name="xlm-roberta-base")
+    # result = classifier.classify(
+    #     "If you are sad and you know it clap your feet.", 
+    #     "We are sad to announce the demise of Manmohan Singh."
+    # )
+    # print(result)
 
     # news_list = [
     #     "Apple is launching a new iPhone next week.",
