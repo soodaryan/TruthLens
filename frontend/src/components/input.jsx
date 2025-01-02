@@ -152,7 +152,7 @@ const InputForm = () => {
                   <video
                     key={index}
                     controls
-                    className="rounded-lg w-full h-32 object-cover border border-gray-300"
+                    className="rounded-lg h-32 object-cover border border-gray-300"
                     src={url}
                   />
                 ))}
@@ -196,7 +196,7 @@ const InputForm = () => {
                 <button
                   type="button"
                   onClick={handleLinkAdd}
-                  className="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+                  className="bg-primary-500 text-black px-4 py-2 rounded-lg hover:bg-primary-700 transition"
                 >
                   Add
                 </button>
@@ -217,12 +217,12 @@ const InputForm = () => {
               {isLoading ? (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-100/80 backdrop-blur-sm z-50">
                   <div className="text-center">
-                  <div className="relative w-16 h-16">
-  {/* Gradient spinning rings */}
-  <div className="absolute inset-0 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin"></div>
-  <div className="absolute inset-1 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-pink-500 via-orange-500 to-yellow-500 animate-spin-slow"></div>
-  <div className="absolute inset-2 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-yellow-500 via-green-500 to-blue-500 animate-spin-slower"></div>
-</div>
+                    <div className="relative w-16 h-16">
+                      {/* Gradient spinning rings */}
+                      <div className="absolute inset-0 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-spin"></div>
+                      <div className="absolute inset-1 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-pink-500 via-orange-500 to-yellow-500 animate-spin-slow"></div>
+                      <div className="absolute inset-2 w-full h-full rounded-full border-4 border-transparent border-t-gradient-to-r from-yellow-500 via-green-500 to-blue-500 animate-spin-slower"></div>
+                    </div>
                     <div className="mt-4 space-y-2">
                       <p className="text-lg font-medium text-gray-600 animate-pulse">Uploading</p>
                       <div className="flex justify-center gap-1">

@@ -42,7 +42,7 @@ const SignupForm = () => {
   return (
     <div className="signup-form-container">
       <div className="form-wrapper">
-        <h2>Enter Policy Holder Details</h2>
+        <h2>Enter Details</h2>
         <form onSubmit={handleSubmit} className="signup-form">
           <input
             type="text"
@@ -79,10 +79,10 @@ const SignupForm = () => {
 
           {/* File Upload Section */}
           <div className="file-input-container">
-            <label>Upload your work Id  (PDF's)</label>
+            <label>Upload your Image</label>
             <input
               type="file"
-              accept=".pdf"
+              accept=".png, .jpg, .jpeg"
               multiple
               onChange={handleFileChange}
             />
@@ -98,7 +98,7 @@ const SignupForm = () => {
             </div>
           </div>
 
-          <button type="submit" className="submit-button" onClick={() => handleNavigation('/dashboard')}>
+          <button type="submit" className="submit-button" onClick={() => handleNavigation('/signin')}>
             Sign Up
           </button>
 

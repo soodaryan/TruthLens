@@ -6,6 +6,37 @@ const Analytics = () => {
   const trendChartRef = useRef(null);
 
   useEffect(() => {
+    const patternOptions = {
+      chart: {
+        type: "donut",
+        height: 256,
+      },
+      series: [44, 55, 41, 17, 23],
+      labels: ["False Information", "Correct Information", "Hate Speech", "Sensitive Content", "Clickbait"],
+      colors: ["#0ea5e9", "#22c55e", "#a855f7", "#64748b", "#f59e0b"],
+    };
+
+    const sourceOptions = {
+      chart: {
+        type: "bar",
+        height: 256,
+        toolbar: {
+          show: false,
+        },
+      },
+      series: [
+        {
+          data: [44, 55, 41, 64, 22],
+        },
+      ],
+      colors: ["#0ea5e9"],
+      xaxis: {
+        categories: ["DD News", "Hindustan Times ", "Google News", "Fact Check API ", "Other"],
+      },
+    };
+
+    let patternChart, sourceChart;
+    
     const options = {
       chart: {
         type: 'area',
@@ -45,9 +76,20 @@ const Analytics = () => {
 
     const chart = new ApexCharts(trendChartRef.current, options);
     chart.render();
+    try {
+      patternChart = new ApexCharts(
+        document.querySelector("#pattern-chart"),
+        patternOptions
+      );
+      patternChart.render();
+
+    } catch (error) {
+      console.error("Error initializing charts:", error);
+    }
 
     return () => {
       chart.destroy();
+      patternChart.destroy();
     };
   }, []);
 
@@ -299,6 +341,84 @@ const Analytics = () => {
               </div>
             </div>
           </div>
+          {/* Trend Insights */}
+        <div className="lg:col-span-4 space-y-6">
+          {/* Top Trends */}
+          <div className="flex flex-col grid grid-cols-2 gap-6 lg:col-span-2">
+            <div className="bg-white border rounded-lg p-6 w-50">
+              <h4 className="text-md font-semibold mb-4">The Truth Wheel </h4>
+              <div id="pattern-chart" className="h-64"></div>
+            </div>
+            <div className="bg-white border rounded-lg p-6 w-50">
+              <h4 className="text-md font-semibold mb-4">
+                Top Fake News
+              </h4>
+              <p className="text-md mb-2">
+                <a
+                  href="https://newschecker.in/fact-check/pakistani-airforce-helicopter-shot-down-by-afghan-forces-old-video-viral-with-false-claim/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Pakistani Airforce Helicopter Shot Down By Afghan Forces?
+                </a>
+              </p>
+              <p className="text-md mb-2">
+                <a
+                  href="https://newschecker.in/fact-check/this-is-not-a-video-of-karnataka-chief-minister-siddaramaiah-dancing-drunk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Video Of Karnataka Chief Minister Siddaramaiah Dancing Drunk
+                </a>
+              </p>
+              <p className="text-md mb-2">
+                <a
+                  href="https://newschecker.in/fact-check/was-bethlehem-church-attacked-on-christmas-heres-the-truth-behind-viral-video/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Was Bethlehem Church Attacked On Christmas?
+                </a>
+              </p>
+              <h4 className="text-md font-semibold mb-4 mt-4 ">
+                Top True News
+              </h4>
+              <p className="text-md mb-2">
+                <a
+                  href="https://www.latestly.com/agency-news/latest-news-icea-bats-for-cut-in-duties-on-parts-components-to-spur-electronics-manufacturing-6534041.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  ICEA Bats for Cut in Duties on Parts, Components to Spur Electronics Manufacturing
+                </a>
+              </p>
+              <p className="text-md mb-2">
+                <a
+                  href="https://www.aljazeera.com/news/2024/12/30/india-launches-its-first-space-docking-mission"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  India launches its first space docking mission
+                </a>
+              </p>
+              <p className="text-md mb-2">
+                <a
+                  href="https://timesofindia.indiatimes.com/technology/tech-news/looking-back-at-ai-in-2024-and-the-way-forward-cxo-speak/articleshow/116863786.cms"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                >
+                  Looking back at AI in 2024 and the way forward: CXO speak
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
 
         </div>
       </section>

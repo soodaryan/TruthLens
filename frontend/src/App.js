@@ -9,6 +9,7 @@ import Settings from './components/Settings';
 import InputForm from './components/input'; 
 import Landing from './components/Landing';
 import SignupForm from './components/Signup';
+import SignInForm from './components/Signin';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<SignupForm />} />
+            <Route path="/signin" element={<SignInForm/>} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/input" element={<InputForm />} />
             <Route path="/analytics" element={<Analytics />} />

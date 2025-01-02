@@ -71,19 +71,13 @@ const TrendAnalysis = () => {
         document.querySelector("#pattern-chart"),
         patternOptions
       );
-      patternChart.render();
+      // patternChart.render();
 
     } catch (error) {
       console.error("Error initializing charts:", error);
     }
 
-    return () => {
-      try {
-        if (patternChart) patternChart.destroy();
-      } catch (error) {
-        console.error("Error destroying charts:", error);
-      }
-    };
+
   }, []);
 
   return (
@@ -103,7 +97,7 @@ const TrendAnalysis = () => {
                 Reports and Analysis
               </h3>
               <div className="overflow-x-auto">
-                <table className="w-[680px]">
+                <table className="w-[100%]">
                   <thead>
                     <tr className="border-b">
                       <th className="text-left py-3 px-4 font-semibold">
@@ -162,6 +156,7 @@ const TrendAnalysis = () => {
                   <ul className="pl-4 list-disc">
                     <li><strong>Overall Sentiment:</strong> Positive</li>
                   </ul>
+
                 </li>
                 <li className="text-sm">
                   <strong>Deepfake Analysis:</strong>
@@ -176,6 +171,16 @@ const TrendAnalysis = () => {
                     <li> Diljit Dosanjh meets the Prime Minister of India.</li>
                     <li> Diljit: Fantastic start to 2025 </li>
                     <li> Gambhir to Team: Bahut ho gaya  </li>
+                  </ul>
+                </li>
+                <li className="text-sm">
+                  <strong>Insights drawn from Related Links:</strong>
+                  <ul className="pl-4 list-disc">
+                    <li> PM Modi praised Dosanjh for representing India globally, while Dosanjh expressed admiration for India's greatness and cultural richness.</li>
+                    <li> Prime Minister Narendra Modi and Diljit Dosanjh discussed India's vibrancy, music, and yoga during their meeting.
+                    </li>
+                    <li> Diljit Dosanjh met Prime Minister Narendra Modi, and they discussed topics like music, culture, and his journey to international fame.  </li>
+                    <li> PM Modi praised Dosanjh for his multifaceted talent and his ability to blend tradition with creativity. </li>
                   </ul>
                 </li>
               </ul>
@@ -221,86 +226,54 @@ const TrendAnalysis = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
-        {/* Trend Insights */}
-        <div className="lg:col-span-4 space-y-6">
-          {/* Top Trends */}
-          <div className="flex flex-col grid grid-cols-2 gap-6 lg:col-span-2">
-            <div className="bg-white border rounded-lg p-6 w-50">
-              <h4 className="text-md font-semibold mb-4">The Truth Wheel </h4>
-              <div id="pattern-chart" className="h-64"></div>
-            </div>
-            <div className="bg-white border rounded-lg p-6 w-50">
-              <h4 className="text-md font-semibold mb-4">
-                Top Fake News
-              </h4>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/pakistani-airforce-helicopter-shot-down-by-afghan-forces-old-video-viral-with-false-claim/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Pakistani Airforce Helicopter Shot Down By Afghan Forces?
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/this-is-not-a-video-of-karnataka-chief-minister-siddaramaiah-dancing-drunk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Video Of Karnataka Chief Minister Siddaramaiah Dancing Drunk
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/was-bethlehem-church-attacked-on-christmas-heres-the-truth-behind-viral-video/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Was Bethlehem Church Attacked On Christmas?
-                </a>
-              </p>
-              <h4 className="text-md font-semibold mb-4 mt-4 ">
-                Top True News
-              </h4>
-              <p className="text-md mb-2">
-                <a
-                  href="https://www.latestly.com/agency-news/latest-news-icea-bats-for-cut-in-duties-on-parts-components-to-spur-electronics-manufacturing-6534041.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  ICEA Bats for Cut in Duties on Parts, Components to Spur Electronics Manufacturing
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://www.aljazeera.com/news/2024/12/30/india-launches-its-first-space-docking-mission"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  India launches its first space docking mission
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://timesofindia.indiatimes.com/technology/tech-news/looking-back-at-ai-in-2024-and-the-way-forward-cxo-speak/articleshow/116863786.cms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Looking back at AI in 2024 and the way forward: CXO speak
-                </a>
-              </p>
+            <div className="bg-white border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-4">Related links</h3>
+              <div className="flex flex-col gap-4">
+                <a href="https://indianexpress.com/article/india/punjabi-actor-singer-diljit-dosanjh-meets-pm-modi-2025-9755327/" className="text-blue-600 hover:underline">Punjabi actor-singer Diljit Dosanjh meets PM Modi: ‘A fantastic start to 2025’</a>
+                <a href="https://www.ndtv.com/india-news/video-when-a-boy-from-an-indian-village-pm-modi-meets-diljit-dosanjh-7379667" className="text-blue-600 hover:underline">Video - "When A Boy From An Indian Village...": PM Modi Meets Diljit Dosanjh</a>
+
+
+              </div>
             </div>
           </div>
         </div>
+
+
+      </section>
+      <section className="ml-80 mb-20 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="bg-white border rounded-lg p-6">
+            <h3 className="text-lg font-semibold mb-4">Information form Trusted Sources</h3>
+            <ul className="space-y-5">
+              <li className="text-sm">
+                <strong>Named Entity Recognition (NER):</strong>
+                <ul className="pl-4 list-disc">
+                  <li><strong>Person:</strong> Diljit Dosanjh, Prime Minister of India</li>
+                  <li><strong>Organization:</strong> Government of India, Prime Minister's Office</li>
+                </ul>
+              </li>
+              <li className="text-sm">
+                  <strong>Insights drawn from Related Links:</strong>
+                  <ul className="pl-4 list-disc">
+                    <li> Punjabi actor-singer Diljit Dosanjh met Prime Minister Narendra Modi on Wednesday for a memorable discussion.</li>
+                    <li> Dosanjh shared pictures of the meeting on X, calling it a fantastic start to 2025 and highlighting their conversation on music.
+                    </li>
+                    <li> Modi praised Dosanjh's rise from humble beginnings to achieving international fame during their interaction.  </li>
+                    <li> PM Modi described Dosanjh as a multifaceted talent blending creativity with tradition in a post on X. </li>
+                    <li>The meeting focused on music, culture, and Dosanjh's contributions to making India's name shine globally.</li>
+                  </ul>
+                </li>
+
+
+
+            </ul>
+          </div>
+          
+        
+        <div className="mr-20 bg-white border rounded-lg p-6 font-semibold h-40">
+            Reports of the input Information have been analyzed and matches with our Trusted Sources. 
+            Therefore it is  <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">VERIFIED</span> News 
+          </div>
 
       </section>
     </>
