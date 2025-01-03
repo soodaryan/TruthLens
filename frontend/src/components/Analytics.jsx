@@ -36,7 +36,7 @@ const Analytics = () => {
     };
 
     let patternChart, sourceChart;
-    
+
     const options = {
       chart: {
         type: 'area',
@@ -248,179 +248,160 @@ const Analytics = () => {
         <div>
 
         </div>
-        <div className="grid grid-cols-2 gap-6">
+        <section className="p-6 space-y-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <div className="grid grid-cols-2 gap-6">
+              {/* Quadrant 1: Recent Activities */}
+              <div className="bg-white border rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800">Recent Activities</h3>
+                <button className="text-sm text-primary-600 hover:underline">View All</button>
+                <div className="space-y-4 mt-4">
+                  <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                    <div className="flex-shrink-0 bg-blue-500/10 rounded-lg p-3">
+                      <svg className="h-6 w-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                        />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-800">New report submitted</p>
+                      <p className="text-xs text-gray-500">2 minutes ago</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
+                    <div className="flex-shrink-0 bg-green-500/10 rounded-lg p-3">
+                      <svg className="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M9 12l2 2l4-4m0 0l4-4m-8 8l4-4M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <p className="text-sm font-medium text-gray-800">Source verified</p>
+                      <p className="text-xs text-gray-500">15 minutes ago</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <div className="p-6 bg-white border border-gray-200 rounded-xl shadow-md">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-800">Recent Activities</h3>
-              <button className="text-sm text-primary-600 hover:underline">View All</button>
-            </div>
-            <div className="space-y-4">
-              <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                <div className="flex-shrink-0 bg-blue-500/10 rounded-lg p-3">
-                  <svg
-                    className="h-6 w-6 text-blue-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-800">New report submitted</p>
-                  <p className="text-xs text-gray-500">2 minutes ago</p>
-                </div>
-              </div>
-              <div className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
-                <div className="flex-shrink-0 bg-green-500/10 rounded-lg p-3">
-                  <svg
-                    className="h-6 w-6 text-green-500"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2l4-4m0 0l4-4m-8 8l4-4M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-800">Source verified</p>
-                  <p className="text-xs text-gray-500">15 minutes ago</p>
+              {/* Quadrant 2: Top Trending Topics */}
+              <div className="bg-white border rounded-lg p-6">
+                <h3 className="text-lg font-semibold mb-4">Top Trending Topics</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">1</span>
+                      <span className="ml-3">#Terroristattack</span>
+                    </div>
+                    <span className="text-sm text-gray-500">12.3K posts</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">2</span>
+                      <span className="ml-3">New Orleans</span>
+                    </div>
+                    <span className="text-sm text-gray-500">778K posts</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">3</span>
+                      <span className="ml-3">Hindu Nav Varsh</span>
+                    </div>
+                    <span className="text-sm text-gray-500">1.2k posts</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">4</span>
+                      <span className="ml-3">#GautamGambhir</span>
+                    </div>
+                    <span className="text-sm text-gray-500">4,812 posts</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="bg-white border rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Top Trending Topics</h3>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
-                    1
-                  </span>
-                  <span className="ml-3">#Terroristattack</span>
-                </div>
-                <span className="text-sm text-gray-500">12.3K posts</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
-                    2
-                  </span>
-                  <span className="ml-3">New Orleans</span>
-                </div>
-                <span className="text-sm text-gray-500">778K posts</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
-                    3
-                  </span>
-                  <span className="ml-3">Hindu Nav Varsh</span>
-                </div>
-                <span className="text-sm text-gray-500">1.2k posts</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <span className="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
-                    3
-                  </span>
-                  <span className="ml-3">#GautamGambhir</span>
-                </div>
-                <span className="text-sm text-gray-500">4,812 posts</span>
-              </div>
-            </div>
-          </div>
-          {/* Trend Insights */}
-        <div className="lg:col-span-4 space-y-6">
-          {/* Top Trends */}
-          <div className="flex flex-col grid grid-cols-2 gap-6 lg:col-span-2">
-            <div className="bg-white border rounded-lg p-6 w-50">
-              <h4 className="text-md font-semibold mb-4">The Truth Wheel </h4>
-              <div id="pattern-chart" className="h-64"></div>
-            </div>
-            <div className="bg-white border rounded-lg p-6 w-50">
-              <h4 className="text-md font-semibold mb-4">
-                Top Fake News
-              </h4>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/pakistani-airforce-helicopter-shot-down-by-afghan-forces-old-video-viral-with-false-claim/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Pakistani Airforce Helicopter Shot Down By Afghan Forces?
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/this-is-not-a-video-of-karnataka-chief-minister-siddaramaiah-dancing-drunk/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Video Of Karnataka Chief Minister Siddaramaiah Dancing Drunk
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://newschecker.in/fact-check/was-bethlehem-church-attacked-on-christmas-heres-the-truth-behind-viral-video/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Was Bethlehem Church Attacked On Christmas?
-                </a>
-              </p>
-              <h4 className="text-md font-semibold mb-4 mt-4 ">
-                Top True News
-              </h4>
-              <p className="text-md mb-2">
-                <a
-                  href="https://www.latestly.com/agency-news/latest-news-icea-bats-for-cut-in-duties-on-parts-components-to-spur-electronics-manufacturing-6534041.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  ICEA Bats for Cut in Duties on Parts, Components to Spur Electronics Manufacturing
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://www.aljazeera.com/news/2024/12/30/india-launches-its-first-space-docking-mission"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  India launches its first space docking mission
-                </a>
-              </p>
-              <p className="text-md mb-2">
-                <a
-                  href="https://timesofindia.indiatimes.com/technology/tech-news/looking-back-at-ai-in-2024-and-the-way-forward-cxo-speak/articleshow/116863786.cms"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                >
-                  Looking back at AI in 2024 and the way forward: CXO speak
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
 
-        </div>
+              {/* Quadrant 3: The Truth Wheel */}
+              <div className="bg-white border rounded-lg p-6">
+                <h4 className="text-md font-semibold mb-4">The Truth Wheel</h4>
+                <div id="pattern-chart" className="h-64"></div>
+              </div>
+
+              {/* Quadrant 4: Fake and True News */}
+              <div className="bg-white border rounded-lg p-6">
+                <h4 className="text-md font-semibold mb-4">Top Fake News</h4>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://newschecker.in/fact-check/pakistani-airforce-helicopter-shot-down-by-afghan-forces-old-video-viral-with-false-claim/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Pakistani Airforce Helicopter Shot Down By Afghan Forces?
+                  </a>
+                </p>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://newschecker.in/fact-check/this-is-not-a-video-of-karnataka-chief-minister-siddaramaiah-dancing-drunk/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Video Of Karnataka Chief Minister Siddaramaiah Dancing Drunk
+                  </a>
+                </p>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://newschecker.in/fact-check/was-bethlehem-church-attacked-on-christmas-heres-the-truth-behind-viral-video/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Was Bethlehem Church Attacked On Christmas?
+                  </a>
+                </p>
+                <h4 className="text-md font-semibold mb-4 mt-4">Top True News</h4>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://www.latestly.com/agency-news/latest-news-icea-bats-for-cut-in-duties-on-parts-components-to-spur-electronics-manufacturing-6534041.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    ICEA Bats for Cut in Duties on Parts, Components to Spur Electronics Manufacturing
+                  </a>
+                </p>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://www.aljazeera.com/news/2024/12/30/india-launches-its-first-space-docking-mission"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    India launches its first space docking mission
+                  </a>
+                </p>
+                <p className="text-md mb-2">
+                  <a
+                    href="https://timesofindia.indiatimes.com/technology/tech-news/looking-back-at-ai-in-2024-and-the-way-forward-cxo-speak/articleshow/116863786.cms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    Looking back at AI in 2024 and the way forward: CXO speak
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
       </section>
     </>
   );
