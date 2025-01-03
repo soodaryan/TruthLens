@@ -71,15 +71,27 @@ TruthLens is dedicated to combating the rapid spread of misinformation in live b
    ```bash
    cd TruthLens
    ```
-3. Install dependencies:
+3. Set Up a Virtual Environment
+   It is recommended to create a virtual environment to manage dependencies. Run the following commands to set it up:
+   a. For Linux/macOS:
+   ```bash
+       python3 -m venv venv
+       source venv/bin/activate
+   ```
+   b. For Windows:
+   ```bash
+       python3 -m venv venv
+       venv/bin/activate
+   ```
+4. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Run the backend:
+5. Run the backend:
    ```bash
    python backend/main.py
    ```
-5. Start the frontend:
+6. Start the frontend:
    ```bash
    cd frontend
    npm install
