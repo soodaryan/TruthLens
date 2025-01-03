@@ -87,6 +87,29 @@ TruthLens is dedicated to combating the rapid spread of misinformation in live b
 
 ---
 
+## 🎯 Run Specific Functionalities
+
+If you want to check out some specific functionalities, you can directly execute files from the following directories:
+1. Run text-based functionalities (e.g., Fake News Detection)
+```bash
+   # 
+    python text/fake_news_detection.py```
+   ```
+
+2. Run audio-based functionalities (e.g., Speech to Text or Sentiment Analysis)
+```bash
+    python audio/SpeechToText/AudioProcessor.py
+    python audio/AudioSentimentAnalysis.py
+   ```
+
+3. Run image-based functionalities (e.g., Deepfake Detection or OCR)
+```bash
+    python images/deepfake_detection.py
+    python images/OCR.py
+   ```
+
+---
+
 ## 🙌 Contributing
 We welcome contributions! Feel free to submit issues or pull requests. For major changes, please discuss them in an issue first. Let’s work together to make TruthLens even better! 💪
 
