@@ -33,15 +33,16 @@ const Settings = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                  <input type="text" value="John Smith" className="w-full p-2 border rounded-lg" />
+                  <input type="text" value="Kartik Sharma" className="w-full p-2 border rounded-lg" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" value="john@example.com" className="w-full p-2 border rounded-lg" />
+                  <input type="email" value="kartiksh@truthlens.ai" className="w-full p-2 border rounded-lg" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
                   <select className="w-full p-2 border rounded-lg">
+                    <option>Broadcaster</option>
                     <option>Administrator</option>
                     <option>Moderator</option>
                     <option>Analyst</option>
@@ -50,6 +51,7 @@ const Settings = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Time Zone</label>
                   <select className="w-full p-2 border rounded-lg">
+                    <option>IST</option>
                     <option>UTC-8 (Pacific Time)</option>
                     <option>UTC-5 (Eastern Time)</option>
                     <option>UTC+0 (GMT)</option>

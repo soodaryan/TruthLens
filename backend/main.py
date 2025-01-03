@@ -108,20 +108,21 @@ def run_models(file_path):
 
     # # SOCIAL MEDIA TOOLKIT
 
-    # fact_check_api = FactCheckAPI()
-    # # Example usage
-    # search_query = "manmohan singh"
-    # result = fact_check_api.search(search_query)
-    # print(result)
+    fact_check_api = FactCheckAPI()
+    # Example usage
+    search_query = "Diljit Dosanjh meets Prime Minister Narendra Modi"
+    result = fact_check_api.search(search_query)
+    print(result)
 
-    # news = """
-    # Pushpa 2 Sandhya Theatre tragedy: Dil Raju says 'whole film industry' will meet CM Revanth Reddy
-    # Dil Raju, shared that Telangana CM Revanth Reddy has assured that he will act as a bridge between the Telangana Film Development Corporation and the government.
-    # Dil Raju visited KIMS Hospital in Secunderabad, Hyderabad, to meet Sri Tej's family. Speaking to ANI, he revealed that he had previously met Telangana Chief Minister Revanth Reddy to discuss providing support to Sri Tej's family, ensuring that both the film industry and government would offer all necessary assistance.
-    # """
-    # predictor = HashtagPredictor()
-    # hashtags = predictor.predict_hashtags(news)
-    # print(hashtags)
+    news = """
+    Diljit Dosanjh recently had the opportunity to meet the Prime Minister of India, marking a significant and memorable moment in his journey. 
+    This encounter not only highlights the growing recognition of influential figures from the entertainment industry but also underscores the importance of dialogue between cultural icons and national leaders. 
+    Such meetings often pave the way for meaningful discussions and collaborations that can inspire positive change.
+    """
+
+    predictor = HashtagPredictor()
+    hashtags = predictor.predict_hashtags(news)
+    print(hashtags)
 
     # twitter_scraper = TwitterHandleScraper(handle=os.getenv("TWITTER_HANDLE"), api_token=os.getenv("TWITTER_HANDLE_API"))
     # tweets = twitter_scraper.scrape()
@@ -129,9 +130,8 @@ def run_models(file_path):
     #     TweetSaver.save(tweets)
 
 
-    # # WEB TOOLKIT
-        
-    # query = "Manmohan Singh died"  # Replace with dynamic input
+    # # WEB BASED TOOLKIT
+    # query = "Diljit Dosanjh meets Prime Minister Narendra Modi"
 
     # # Extract links
     # link_extractor = NewsLinkExtractor()
@@ -154,7 +154,6 @@ def run_models(file_path):
     # for url, content in articles.items():
     #     print(f"URL: {url}\nContent: {content}\n")
 
-    # query = 'ISRO Satellite'  # Assign your query string here
     # scraper = TweetScraper(query=query)
     # asyncio.run(scraper.start_scraping())
         
