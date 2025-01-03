@@ -16,10 +16,11 @@ TruthLens is dedicated to combating the rapid spread of misinformation in live b
 ---
 
 ## 📈 Achievements
-- **Finetuned NLI Model**: Achieved 94% accuracy in identifying contradictions, entailments, and neutral views.
+- **Finetuned NLI Model**: Achieved 94% accuracy in identifying contradictions, entailments, and neutral views by fine-tuning xlm-RoBERTa model.
 - **Speech-to-Text**: Achieved 96%+ accuracy using Google Speech Recognition API.
 - **Deepfake Detection**: Models achieved an 89% accuracy rate in detecting manipulated content.
-- **Sentiment Analysis**: State-of-the-art results with 96% accuracy using finetuned RoBERTa models.
+- **Sentiment Analysis**: State-of-the-art results with 96% accuracy using a finetuned twitter-RoBERTa model.
+- **Named Entity Recognition**: Levereaged GLiNER (Generalist and Lightweight Model for Named Entity Recognition) for accurate NER over news reports.
 
 ---
 
