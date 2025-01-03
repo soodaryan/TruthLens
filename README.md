@@ -92,8 +92,7 @@ TruthLens is dedicated to combating the rapid spread of misinformation in live b
 If you want to check out some specific functionalities, you can directly execute files from the following directories:
 1. Run text-based functionalities (e.g., Fake News Detection)
 ```bash
-   # 
-    python text/fake_news_detection.py```
+    python text/fake_news_detection.py
    ```
 
 2. Run audio-based functionalities (e.g., Speech to Text or Sentiment Analysis)
