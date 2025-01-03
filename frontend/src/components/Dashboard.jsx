@@ -20,7 +20,7 @@ const Dashboard = () => {
             toolbar: { show: false },
           },
           series: [
-            { name: "Misinformation Cases", data: [31, 40, 28, 51, 42, 109, 100] },
+            { name: "Misinformation Cases", data: [31, 40, 28, 51, 42, 109, 70] },
           ],
           xaxis: { categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] },
           colors: ["#0ea5e9"],
@@ -229,13 +229,13 @@ const Dashboard = () => {
                     </div>
                     <div className="ml-4" id="el-t5dm7zor">
                       <p className="text-sm text-neutral-500" id="el-i2te047a">
-                        Fake News
+                        Fake News Cases
                       </p>
                       <p
                         className="text-2xl font-semibold text-black"
                         id="el-28y7z7g8"
                       >
-                        40
+                        70
                       </p>
                     </div>
                   </div>
@@ -274,7 +274,7 @@ const Dashboard = () => {
                         className="text-2xl font-semibold text-black"
                         id="el-isy743az"
                       >
-                        30
+                        153
                       </p>
                     </div>
                   </div>
@@ -303,7 +303,7 @@ const Dashboard = () => {
             <div className="p-4 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium text-gray-900">
-                  Recent Claims of Fake News 
+                  Recent Claims
                 </h2>
                 <div className="flex space-x-2">
                   <button className="px-4 py-2 bg-gray-200 text-gray-900 rounded-lg hover:bg-gray-300 transition-colors">

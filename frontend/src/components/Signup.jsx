@@ -53,6 +53,14 @@ const SignupForm = () => {
             required
           />
           <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
             type="phone"
             name="phone"
             placeholder="Phone Number"
@@ -103,7 +111,7 @@ const SignupForm = () => {
           </button>
 
           <p className="login-text">
-            Already have an account? <a href="/signup">Login here</a>
+            Already have an account? <a href="/signin" >Login here</a>
           </p>
         </form>
       </div>
