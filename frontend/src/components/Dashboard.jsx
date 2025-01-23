@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import ApexCharts from "apexcharts";
-import image from "./images/manImg.png"
+import image from "./images/manImg.png";
+import { useAuth } from "../context/authContext";
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
-
+  const { currentUser } = useAuth();
   useEffect(() => {
     let trendChart, patternChart, sourceChart;
 
@@ -20,9 +21,14 @@ const Dashboard = () => {
             toolbar: { show: false },
           },
           series: [
-            { name: "Misinformation Cases", data: [31, 40, 28, 51, 42, 109, 70] },
+            {
+              name: "Misinformation Cases",
+              data: [31, 40, 28, 51, 42, 109, 70],
+            },
           ],
-          xaxis: { categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"] },
+          xaxis: {
+            categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          },
           colors: ["#0ea5e9"],
           fill: {
             type: "gradient",
@@ -57,7 +63,9 @@ const Dashboard = () => {
           chart: { type: "bar", height: 256, toolbar: { show: false } },
           series: [{ data: [44, 55, 41, 64, 22] }],
           colors: ["#0ea5e9"],
-          xaxis: { categories: ["Twitter", "Facebook", "News", "Blogs", "Other"] },
+          xaxis: {
+            categories: ["Twitter", "Facebook", "News", "Blogs", "Other"],
+          },
         };
         sourceChart = new ApexCharts(sourceElement, sourceOptions);
         sourceChart.render();
@@ -122,16 +130,45 @@ const Dashboard = () => {
               id="el-rfhh6hea"
             >
               <div className="bg-white text-center space-y-4" id="el-ssmu59bz">
-                <img
+              {currentUser.photoURL ? (
+                  <img
+                    className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
+                    src={currentUser.photoURL}
+                    alt="Profile"
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                ) : (
+                  <img
+                    className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
+                    src={image}
+                    alt="Profile"
+                    loading="lazy"
+                    id="el-amo17jis"
+                  />
+                )}
+                {/* <img
                   className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
                   src={image}
                   alt="Profile"
                   loading="lazy"
                   id="el-amo17jis"
-                />
+                /> */}
                 <div id="el-a5g7ju64">
-                  <h3 className="text-lg font-medium text-black" id="el-30dimsth">
-                    Kartik Sharma
+                  <h3
+                    className="text-lg font-medium text-black"
+                    id="el-30dimsth"
+                  >
+                    {currentUser.displayName}
+                  </h3>
+                  <h3
+                    className="text-lg font-medium text-black"
+                    id="el-30dimsth"
+                  >
+                    Email: {currentUser.email}
                   </h3>
                   <p className="text-neutral-700" id="el-safedpgm">
                     Broadcaster ID: TL-117
@@ -192,7 +229,6 @@ const Dashboard = () => {
               </div>
             </div>
 
-
             {/* Activity & Claims Section */}
             <div className=" lg:col-span-2 space-y-6" id="el-wa1xx5sb">
               {/* Stats Cards */}
@@ -200,8 +236,6 @@ const Dashboard = () => {
                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 id="el-kk2vaxwv"
               >
-
-
                 <div
                   className="bg-white rounded-lg border border-neutral-300 p-4"
                   id="el-ukkib61s"
@@ -284,21 +318,27 @@ const Dashboard = () => {
               {/* Recent Activity */}
               <div className="bg-white border rounded-lg p-6 mb-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-lg font-semibold">Fake News Demographics</h3>
+                  <h3 className="text-lg font-semibold">
+                    Fake News Demographics
+                  </h3>
                   <div className="flex gap-2">
-                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">24h</button>
-                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">7d</button>
-                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">30d</button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">
+                      24h
+                    </button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">
+                      7d
+                    </button>
+                    <button className="px-4 py-2 text-sm bg-gray-100 rounded-lg">
+                      30d
+                    </button>
                   </div>
                 </div>
                 <div id="trend-analysis-chart" className="h-80"></div>
               </div>
-
             </div>
           </div>
         </section>
         <section id="claims_dashboard" className="p-6 space-y-6">
-
           <div className="bg-white rounded-lg border border-gray-200">
             <div className="p-4 border-b border-gray-200">
               <div className="flex justify-between items-center">
@@ -343,9 +383,10 @@ const Dashboard = () => {
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
                       <div className="flex items-center">
-                        
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Sumedha Aggarwal</p>
+                          <p className="text-sm text-gray-900">
+                            Sumedha Aggarwal
+                          </p>
                           <p className="text-xs text-gray-500">ID: TL-60</p>
                         </div>
                       </div>
@@ -353,10 +394,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4 text-sm text-gray-900">
                       Twitter Post
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">2 hr ago </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      2 hr ago{" "}
+                    </td>
                     <td className="px-4 py-4">
                       <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News 
+                        Fake News
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -391,10 +434,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4 text-sm text-gray-900">
                       Aajtak News Article
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">5 hr ago </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      5 hr ago{" "}
+                    </td>
                     <td className="px-4 py-4">
                       <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
-                        True News 
+                        True News
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -429,10 +474,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4 text-sm text-gray-900">
                       News Article
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">16 hr ago </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      16 hr ago{" "}
+                    </td>
                     <td className="px-4 py-4">
                       <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News  
+                        Fake News
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -459,7 +506,9 @@ const Dashboard = () => {
                     <td className="px-4 py-4">
                       <div className="flex items-center">
                         <div className="ml-3">
-                          <p className="text-sm text-gray-900">Gurkeerat Singh</p>
+                          <p className="text-sm text-gray-900">
+                            Gurkeerat Singh
+                          </p>
                           <p className="text-xs text-gray-500">ID: TL-101</p>
                         </div>
                       </div>
@@ -467,10 +516,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4 text-sm text-gray-900">
                       Twitter Post
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">22 hr ago </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      22 hr ago{" "}
+                    </td>
                     <td className="px-4 py-4">
                       <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
-                        True News 
+                        True News
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -505,10 +556,12 @@ const Dashboard = () => {
                     <td className="px-4 py-4 text-sm text-gray-900">
                       Twitter Post
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">2 days ago </td>
+                    <td className="px-4 py-4 text-sm text-gray-900">
+                      2 days ago{" "}
+                    </td>
                     <td className="px-4 py-4">
                       <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News 
+                        Fake News
                       </span>
                     </td>
                     <td className="px-4 py-4">
@@ -530,7 +583,6 @@ const Dashboard = () => {
                   </tr>
                   {/* Additional rows with similar structure but different data */}
                 </tbody>
-                
               </table>
             </div>
             <div className="p-4 border-t border-gray-200">

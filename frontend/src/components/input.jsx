@@ -97,7 +97,7 @@ const InputForm = () => {
             {/* Text Input */}
             <div>
               <label htmlFor="textInput" className="block text-sm font-medium mb-2">
-                Enter Text
+                Enter News to be Verified 
               </label>
               <textarea
                 id="textInput"
@@ -110,7 +110,7 @@ const InputForm = () => {
             </div>
 
             {/* Image Upload */}
-            <div>
+            {/* <div>
               <label htmlFor="imageUpload" className="block text-sm font-medium mb-2">
                 Upload Images
               </label>
@@ -132,7 +132,7 @@ const InputForm = () => {
                   />
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Video Upload */}
             <div>
@@ -158,9 +158,41 @@ const InputForm = () => {
                 ))}
               </div>
             </div>
+            {/*Video Links */}
+            <div>
+              <label htmlFor="videoLinks" className="block text-sm font-medium mb-2">
+                Add Video Links 
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="url"
+                  id="relatedLinks"
+                  value={linkInput}
+                  onChange={(e) => setLinkInput(e.target.value)}
+                  className="block w-full border border-gray-300 bg-white rounded-lg p-2 text-gray-900"
+                  placeholder="Enter a URL"
+                />
+                <button
+                  type="button"
+                  onClick={handleLinkAdd}
+                  className="bg-primary-500 text-black px-4 py-2 rounded-lg hover:bg-primary-700 transition"
+                >
+                  Add
+                </button>
+              </div>
+              <ul className="mt-4 list-disc list-inside space-y-1">
+                {relatedLinks.map((link, index) => (
+                  <li key={index} className="text-blue-500 hover:underline">
+                    <a href={link} target="_blank" rel="noopener noreferrer">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             {/* Audio Upload */}
-            <div>
+            {/* <div>
               <label htmlFor="audioUpload" className="block text-sm font-medium mb-2">
                 Upload Audios
               </label>
@@ -177,12 +209,12 @@ const InputForm = () => {
                   <audio key={index} controls className="w-full" src={url} />
                 ))}
               </div>
-            </div>
+            </div> */}
 
             {/* Related Links */}
             <div>
               <label htmlFor="relatedLinks" className="block text-sm font-medium mb-2">
-                Add Related Links
+                Add Blog Websites Or News Links
               </label>
               <div className="flex gap-2">
                 <input
