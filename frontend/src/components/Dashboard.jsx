@@ -3,9 +3,11 @@ import Sidebar from "./Sidebar";
 import ApexCharts from "apexcharts";
 import image from "./images/manImg.png";
 import { useAuth } from "../context/authContext";
+
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
   const { currentUser } = useAuth();
+  const { userLoggedIn } = useAuth();
   useEffect(() => {
     let trendChart, patternChart, sourceChart;
 
@@ -130,25 +132,63 @@ const Dashboard = () => {
               id="el-rfhh6hea"
             >
               <div className="bg-white text-center space-y-4" id="el-ssmu59bz">
-              {currentUser.photoURL ? (
-                  <img
-                    className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
-                    src={currentUser.photoURL}
-                    alt="Profile"
-                    style={{
-                      width: "100px",
-                      height: "100px",
-                      borderRadius: "50%",
-                    }}
-                  />
+                {userLoggedIn ? (
+                  <div>
+                    <img
+                      className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
+                      src={currentUser.photoURL}
+                      alt="Profile"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                        borderRadius: "50%",
+                      }}
+                    />
+                    <div id="el-a5g7ju64">
+                      <h3
+                        className="text-lg font-medium text-black"
+                        id="el-30dimsth"
+                      >
+                        {currentUser.displayName}
+                      </h3>
+                      <h3
+                        className="text-lg font-medium text-black"
+                        id="el-30dimsth"
+                      >
+                        Email: {currentUser.email}
+                      </h3>
+                      <p className="text-neutral-700" id="el-safedpgm">
+                        Broadcaster ID: TL-117
+                      </p>
+                    </div>
+                  </div>
                 ) : (
-                  <img
-                    className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
-                    src={image}
-                    alt="Profile"
-                    loading="lazy"
-                    id="el-amo17jis"
-                  />
+                  <div>
+                    <img
+                      className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
+                      src={image}
+                      alt="Profile"
+                      loading="lazy"
+                      id="el-amo17jis"
+                    />
+                    <div id="el-a5g7ju64">
+                      <h3
+                        className="text-lg font-medium text-black"
+                        id="el-30dimsth"
+                      >
+                        Authenticoders
+                      </h3>
+                      <h3
+                        className="text-lg font-medium text-black"
+                        id="el-30dimsth"
+                      >
+                        Email: Authentcoder.ai
+                      </h3>
+                      <p className="text-neutral-700" id="el-safedpgm">
+                        Broadcaster ID: TL-117
+                      </p>
+                    </div>
+                  </div>
                 )}
                 {/* <img
                   className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
@@ -157,23 +197,7 @@ const Dashboard = () => {
                   loading="lazy"
                   id="el-amo17jis"
                 /> */}
-                <div id="el-a5g7ju64">
-                  <h3
-                    className="text-lg font-medium text-black"
-                    id="el-30dimsth"
-                  >
-                    {currentUser.displayName}
-                  </h3>
-                  <h3
-                    className="text-lg font-medium text-black"
-                    id="el-30dimsth"
-                  >
-                    Email: {currentUser.email}
-                  </h3>
-                  <p className="text-neutral-700" id="el-safedpgm">
-                    Broadcaster ID: TL-117
-                  </p>
-                </div>
+
                 <div
                   className="border-t border-neutral-500 pt-4"
                   id="el-ywuhlho4"

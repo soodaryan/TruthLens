@@ -31,26 +31,29 @@ const SignInForm = () => {
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
     setIsSigningIn(true);
+    setErrorMessage(""); // Clear any previous errors
     try {
       await doSignInWithGoogle();
     } catch (error) {
+      console.error("Google sign-in error:", error);
       setErrorMessage("Google sign-in failed. Please try again.");
+    } finally {
       setIsSigningIn(false);
     }
   };
-  if (userLoggedIn === undefined) {
+
+  // Handle undefined state for userLoggedIn
+  if (userLoggedIn === null) {
     return <div className="text-center mt-10">Loading...</div>; // Show loading state
   }
+
   if (userLoggedIn) {
     return <Navigate to="/dashboard" replace />;
   }
 
   return (
     <div className="signin-form-container">
-      <form
-        onSubmit={handleEmailSignIn}
-        className="form-wrapper"
-      >
+      <form onSubmit={handleEmailSignIn} className="form-wrapper">
         <h2 className="text-2xl font-bold text-center text-white-800 mb-6">
           Sign In
         </h2>
@@ -114,7 +117,7 @@ const SignInForm = () => {
               : "bg-white hover:bg-gray-50 border-gray-300 focus:ring-2 focus:ring-indigo-400 transition duration-300"
           }`}
         >
-          {isSigningIn ? (  
+          {isSigningIn ? (
             "Signing In..."
           ) : (
             <>

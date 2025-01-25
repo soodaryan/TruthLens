@@ -5,21 +5,40 @@ import logo from "./images/TruthLens.png";
 import image from "./images/manImg.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import { doSignOut } from "../firebase/auth";
+import { auth } from "../firebase/firebase";
 
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currentUser } = useAuth();
-  const navigate = useNavigate();
   const { userLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  // const { userLoggedIn } = useAuth();
+  const fetchUserData = async () => {
+    auth.onAuthStateChanged((user) => {
+      console.log("User: ", user);
+      if (user) {
+        console.log("User is signed in");
+      } else {
+        console.log("No user is signed in");
+      }
+    });
+  };
 
+  async function handleLogout() {
+    try {
+      await auth.signOut();
+      navigate("/signin");
+    } catch (error) {
+      console.error("Error signing out: ", error);
+    }
+  }
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false);
       }
     };
-
+    fetchUserData();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -77,62 +96,44 @@ const Sidebar = () => {
 
         <div className="sidebar-footer">
           <div classname="user-info">
-            {userLoggedIn ? (
-              <>
-                <button
-                  onClick={() => {
-                    doSignOut().then(() => {
-                      navigate("/signin");
-                    });
-                  }}
-                  className="fas fa-file-alt"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  className="text-sm text-blue-600 underline"
-                  to={"/signin"}
-                >
-                  Login
-                </Link>
-                <Link
-                  className="text-sm text-blue-600 underline"
-                  to={"/signup"}
-                >
-                  Register New Account
-                </Link>
-              </>
-            )}
+            <button className="btn-logout" onClick={handleLogout}>
+              <i className="fas fa-sign-out-alt"> Logout</i>
+            </button>
           </div>
           <div>
             <div className="user-info">
-              {currentUser.photoURL ? (
-                <img
-                  className="user-avatar"
-                  src={currentUser.photoURL}
-                  alt="Profile"
-                  style={{
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "50%",
-                  }}
-                />
+              {userLoggedIn ? (
+                <div>
+                  <img
+                    className="user-avatar"
+                    src={currentUser.photoURL}
+                    alt="Profile"
+                    style={{
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "50%",
+                    }}
+                  />
+                  <div className="user-details">
+                    <p className="user-name">{currentUser.displayName}</p>
+                    <p className="user-email">{currentUser.email}</p>
+                  </div>
+                </div>
               ) : (
-                <img
-                  className="user-avatar"
-                  src={image}
-                  alt="Profile"
-                  loading="lazy"
-                  id="el-amo17jis"
-                />
+                <div>
+                  <div className="user-details">
+                    <p className="user-name">Authenticoders</p>
+                    <p className="user-email">Authenticoders.ai</p>
+                  </div>
+                  <img
+                    className="user-avatar"
+                    src={image}
+                    alt="Profile"
+                    loading="lazy"
+                    id="el-amo17jis"
+                  />
+                </div>
               )}
-              <div className="user-details">
-                <p className="user-name">{currentUser.displayName}</p>
-                <p className="user-email">{currentUser.email}</p>
-              </div>
             </div>
           </div>
         </div>

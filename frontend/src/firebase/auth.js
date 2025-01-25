@@ -25,9 +25,7 @@ export const doSignInWithGoogle = async () => {
   // add user to firestore
 };
 
-export const doSignOut = () => {
-  return auth.signOut();
-};
+
 
 export const doPasswordReset = (email) => {
   return sendPasswordResetEmail(auth, email);
@@ -39,6 +37,6 @@ export const doPasswordChange = (password) => {
 
 export const doSendEmailVerification = () => {
   return sendEmailVerification(auth.currentUser, {
-    url: `${window.location.origin}/home`,
+    url: `${window.location.origin}/dashboard`,
   });
 };
