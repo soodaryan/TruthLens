@@ -2,6 +2,13 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 import asyncio
+import sys
+import os 
+import json 
+# Get the parent directory of the current script
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# Add the parent directory to sys.path
+sys.path.append(parent_dir)
 
 from images.graphicDetails import ImageProcessor
 from images.cloudi import CloudinaryPost
@@ -16,46 +23,86 @@ from toolkits.socialmediaToolkit.twitterHandleScraper import TwitterHandleScrape
 
 from toolkits.webToolkit.article_scraper import ArticleScraper
 from toolkits.webToolkit.links_scraper import NewsLinkExtractor
-from toolkits.webToolkit.tweetScrapper import TweetScraper
+# from toolkits.webToolkit.tweetScrapper import TweetScraper
+
+from werkzeug.utils import secure_filename
+from pymongo import MongoClient
+
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app) 
 
-IMAGE_UPLOAD_FOLDER = './uploads/images'
+client = MongoClient("mongodb://localhost:27017/")
+db = client["TuthTell"]
+form_collection = db["userInput"]
+
+print("Connected to MongoDB")
+
 VIDEO_UPLOAD_FOLDER = './uploads/videos'
-
-os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(VIDEO_UPLOAD_FOLDER, exist_ok=True)
-
-app.config['IMAGE_UPLOAD_FOLDER'] = IMAGE_UPLOAD_FOLDER
 app.config['VIDEO_UPLOAD_FOLDER'] = VIDEO_UPLOAD_FOLDER
 
 @app.route('/upload-media', methods=['POST'])
 def upload_media():
-    if not request.files:
-        return jsonify({"error": "No files uploaded"}), 400
+    print("Received media upload request")
+    
+    # Extract form data
+    text_input = request.form.get("textInput")
+    blog_links = request.form.get("relatedLinks")  # Match with 'blogLinks' in schema
+    video_links = request.form.get("videoLinks")
+    
+    print("Form Data:", text_input, blog_links, video_links)
+    # Initialize variables to store results
+    uploaded_videos = []
+    extracted_links = {
+        "textInput": text_input,
+        "blogLinks": json.loads(blog_links) if blog_links else [],
+        "videoLinks": json.loads(video_links) if video_links else [],
+    }
 
     try:
+        if not request.files:
+            return jsonify({"error": "No files uploaded"}), 400
+
+        # Process uploaded files
         for key in request.files:
             file = request.files[key]
-            if file.content_type.startswith('image/'):
-                save_path = os.path.join(app.config['IMAGE_UPLOAD_FOLDER'], file.filename)
+            if file.content_type.startswith('video/'):
+                save_path = os.path.normpath(os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename))
+                # save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
+                
                 file.save(save_path)
-                print(f"Saved {file.filename} at {save_path}")
-                run_models(save_path)
-            elif file.content_type.startswith('video/'):
-                save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
-                file.save(save_path)
-                print(f"Saved {file.filename} at {save_path}")
-
+                uploaded_videos.append(save_path)
+                print(f"Saved video {file.filename} at {save_path}")
             else:
-                continue  # Skip unsupported file types
+                print(f"Skipping unsupported file type: {file.content_type}")
 
-            
-        return jsonify({"message": "All media uploaded successfully!"}), 200
+        # Add the uploaded video paths to the extracted data
+        extracted_links["videoPaths"] = uploaded_videos
+
+        # Insert data (align with Mongoose schema)
+        db_entry = {
+            "textInput": extracted_links["textInput"],
+            "videoLinks": extracted_links["videoLinks"],
+            "blogLinks": extracted_links["blogLinks"],
+            "videoPaths": extracted_links["videoPaths"],
+            "createdAt": datetime.now()
+        }
+        form_collection.insert_one(db_entry)
+        print("Inserted data into MongoDB:", db_entry)
+
+        # Log all the extracted data for debugging
+        print("Extracted Data:", extracted_links)
+
+        return jsonify({
+            "message": "Media uploaded, form data processed, and saved to MongoDB successfully!",
+            "data": extracted_links
+        }), 200
+
     except Exception as e:
+        print("Error during processing:", str(e))
         return jsonify({"error": str(e)}), 500
-    
 
 def run_models(file_path):
     print()
@@ -115,7 +162,7 @@ def run_models(file_path):
     text_input = search_query
     result = sentiment_analyzer.analyze_sentiment(text_input)
     print(f"Sentiment for the text '{text_input}': {result}")
-
+     
     # # TOOLKITS
 
     # # SOCIAL MEDIA TOOLKIT
@@ -178,5 +225,8 @@ def run_models(file_path):
     # print(result)
 
 if __name__ == '__main__':
-    # app.run(debug=True, host='0.0.0.0', port=5000)
-    run_models("/Users/vishrutgrover/coding/truthlens/TruthLens/images/ss.png")
+    app.run(debug=True, host='0.0.0.0', port=5000)
+    # run_models("/Users/vishrutgrover/coding/truthlens/TruthLens/images/ss.png")
+    
+    
+   
