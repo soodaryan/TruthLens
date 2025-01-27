@@ -33,9 +33,13 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app) 
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["TuthTell"]
-form_collection = db["userInput"]
+# client = MongoClient("mongodb+srv://hemang_truthtell:hemang11062005@cluster0.u3oyruj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+# db = client["TuthTell"]
+# form_collection = db["userInput"]
+
+client = MongoClient(f"mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo")  
+db = client["test"]
+form_collection = db["TruthTell"]
 
 print("Connected to MongoDB")
 
