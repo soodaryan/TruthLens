@@ -172,5 +172,5 @@ def video_analysis_pipeline(video_path, api_key):
     
 # Example usage
 video_path = r"C:\Users\itsta\OneDrive\Desktop\HEMANG\TruthLens\toolkits\webToolkit\aims.mp4"
-api_key = "AIzaSyCA1lsOyd5UFwk2OqOTNDb6J-gz5rwIvkk"
+api_key = ""
 video_analysis_pipeline(video_path, api_key)

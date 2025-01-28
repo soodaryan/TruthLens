@@ -88,4 +88,55 @@
 # transcription = transcribe_video(video_file)
 # print("Transcription:", transcription)
 
+import requests
+import os
+from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq
+import torch
 
+headers = {
+    'apy-token': '',
+}
+
+params = {
+    'output': 'test-sample',
+}
+
+# Using a raw string for the file path and ensuring the file is closed properly using 'with'
+video_path = r'C:\Users\itsta\OneDrive\Desktop\HEMANG\TruthLens\toolkits\webToolkit\aims.mp4'
+with open(video_path, 'rb') as video_file:
+    files = {
+        'video': video_file,
+        'start_time': '0',
+        'duration': '5',
+        'output_format': 'mp3',
+    }
+
+    response = requests.post('https://api.apyhub.com/extract/video/audio/file', params=params, headers=headers, files=files)
+
+# Check the response
+if response.status_code == 200:
+    print("Audio extracted successfully")
+    
+    # Save the audio to the same directory
+    output_audio_path = os.path.join(os.path.dirname(video_path), 'extracted_audio.mp3')
+    with open(output_audio_path, 'wb') as audio_file:
+        audio_file.write(response.content)
+    
+    print(f"Audio saved at {output_audio_path}")
+    
+    # Apply Whisper for transcription
+    processor = AutoProcessor.from_pretrained("openai/whisper-small")
+    model = AutoModelForSpeechSeq2Seq.from_pretrained("openai/whisper-small")
+
+    # Load the audio file for transcription
+    audio_input = processor(audio_file=open(output_audio_path, 'rb'), return_tensors="pt").input_values
+
+    # Generate transcription
+    with torch.no_grad():
+        transcription = model.generate(audio_input)
+    
+    # Decode and print the transcription
+    transcription_text = processor.decode(transcription[0])
+    print(f"Transcription: {transcription_text}")
+else:
+    print(f"Error: {response.status_code}, {response.text}")
