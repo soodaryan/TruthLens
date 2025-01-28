@@ -52,38 +52,37 @@ def upload_media():
     print("Received media upload request")
     
     # Extract form data
-    text_input = request.form.get("textInput")
-    blog_links = request.form.get("relatedLinks")  # Match with 'blogLinks' in schema
-    video_links = request.form.get("videoLinks")
+    text_input = request.form.get("textInput", None)
+    blog_links = request.form.get("relatedLinks", None)  # Match with 'blogLinks' in schema
+    video_links = request.form.get("videoLinks", None)
     
     print("Form Data:", text_input, blog_links, video_links)
     # Initialize variables to store results
     uploaded_videos = []
     extracted_links = {
-        "textInput": text_input,
-        "blogLinks": json.loads(blog_links) if blog_links else [],
-        "videoLinks": json.loads(video_links) if video_links else [],
+        "textInput": text_input if text_input else None,
+        "blogLinks": json.loads(blog_links) if blog_links else None,
+        "videoLinks": json.loads(video_links) if video_links else None,
     }
 
     try:
-        if not request.files:
-            return jsonify({"error": "No files uploaded"}), 400
+        if request.files:
 
         # Process uploaded files
-        for key in request.files:
-            file = request.files[key]
-            if file.content_type.startswith('video/'):
-                save_path = os.path.normpath(os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename))
-                # save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
-                
-                file.save(save_path)
-                uploaded_videos.append(save_path)
-                print(f"Saved video {file.filename} at {save_path}")
-            else:
-                print(f"Skipping unsupported file type: {file.content_type}")
+            for key in request.files:
+                file = request.files[key]
+                if file.content_type.startswith('video/'):
+                    save_path = os.path.normpath(os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename))
+                    # save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
+                    
+                    file.save(save_path)
+                    uploaded_videos.append(save_path)
+                    print(f"Saved video {file.filename} at {save_path}")
+                else:
+                    print(f"Skipping unsupported file type: {file.content_type}")
 
         # Add the uploaded video paths to the extracted data
-        extracted_links["videoPaths"] = uploaded_videos
+        extracted_links["videoPaths"] = uploaded_videos if uploaded_videos else None
 
         # Insert data (align with Mongoose schema)
         db_entry = {
