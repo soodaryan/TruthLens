@@ -70,6 +70,19 @@ if __name__ == "__main__":
 
         print("Document retrieved:", document)
 
+        textInput = document['textInput']
+        videoLinks = document['videoLinks']
+        blogLinks = document['blogLinks']
+        videoPaths = document['videoPaths']
+
+        print(textInput)
+        print(videoLinks)
+        print(blogLinks)
+        print(videoPaths)
+
+
+
+
     finally:
         # Step 5: Close the connection
         close_mongodb_connection(client)
