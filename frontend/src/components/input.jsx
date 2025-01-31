@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import { useAuth } from "../context/authContext";
+
 const InputForm = () => {
   const [videos, setVideos] = useState([]);
   const [textInput, setTextInput] = useState("");
@@ -10,7 +12,8 @@ const InputForm = () => {
   const [linkInput, setLinkInput] = useState("");
   const [videoLinkInput, setVideoLinkInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const { currentUser } = useAuth();
+  const { userLoggedIn } = useAuth();
   const navigate = useNavigate();
 
   const handleVideoChange = (event) => {
@@ -37,10 +40,12 @@ const InputForm = () => {
     event.preventDefault();
     setIsLoading(true);
 
+    console.log("User:", currentUser);
     console.log("Videos:", videos);
     console.log("Text Input:", textInput);
     console.log("Related Links:", relatedLinks);
     console.log("Video Links:", videoLinks);
+
     // Create a FormData object
     const formData = new FormData();
 
@@ -48,7 +53,7 @@ const InputForm = () => {
     videos.forEach((video, index) => {
       formData.append(`video_${index}`, video);
     });
-
+    formData.append("email", currentUser.email);
     // Append text input
     formData.append("textInput", textInput);
 
