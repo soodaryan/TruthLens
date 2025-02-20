@@ -10,6 +10,8 @@ import InputForm from './components/input';
 import Landing from './components/Landing';
 import SignupForm from './components/Signup';
 import SignInForm from './components/Signin';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         
         <div className="main-content">
           {/* Routes for different components */}
+          <ToastContainer />
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/signup" element={<SignupForm />} />

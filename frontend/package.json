@@ -9,8 +9,10 @@
     "react": "^19.0.0",
     "react-apexcharts": "^1.7.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.0.0",
     "react-router-dom": "^7.0.2",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.3"
   },
   "scripts": {
     "start": "react-scripts start",

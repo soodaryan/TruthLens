@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import { useAuth } from "../context/authContext";
@@ -75,20 +77,43 @@ const InputForm = () => {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        console.log("Upload successful:", result.message);
+        console.log("Media uploaded successfully!");
+        // alert("Media uploaded successfully!");
+        
 
-        // Navigate to another page after success
+        toast.success("Input submitted! Go to 'Trends & Reports' to check insights.", {
+          position: "top-right",
+          autoClose: 3000,  // Closes in 3 seconds
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+
         setTimeout(() => {
           navigate("/trend-and-report");
-        }, 2000);
+        }, 3500);
+
       } else {
-        console.error("Failed to upload media");
+        console.error("Failed to upload media:", response.statusText);
+        // alert("Upload failed! Please try again.");
+
+        toast.error("Upload failed! Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
+
     } catch (error) {
-      console.error("Error uploading media:", error);
+        console.error("Failed to upload media:", error.response?.data || error.message);
+        // alert("Upload failed! Please try again.");
+
+        toast.error("Something went wrong! Try again later.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
   return (

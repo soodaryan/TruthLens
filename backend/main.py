@@ -93,6 +93,8 @@ def upload_media():
             for url, content in articles.items():
                 print(f"URL: {url}\nContent: {content}\n")
                 extracted_links["blogContent"] = content
+        else :
+            extracted_links["blogContent"] = None
                 
         for video_file in os.listdir(app.config['VIDEO_UPLOAD_FOLDER']):
             video_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], video_file)
@@ -142,7 +144,10 @@ def upload_media():
                 print(f"Skipping non-audio file: {audio_file}")
 
         extracted_links["videoPaths"] = uploaded_videos if uploaded_videos else None
-
+        openai = OnDemandOpenAI()
+        response = openai.query(input_summary_prompt.format(extracted_links["textInput"], extracted_links["videoTranscript"], extracted_links["blogContent"]))
+        print("OpenAI Response:", response)
+        extracted_links["inputInsights"] = response
         db_entry = {
             "email": email,
             "textInput": extracted_links.get("textInput"),
@@ -152,34 +157,53 @@ def upload_media():
             "videoTranscript": extracted_links.get("videoTranscript"),
             "videoPaths": extracted_links.get("videoPaths"),
             "videoInsights": extracted_links.get("videoInsights"),
+            "inputInsights": extracted_links.get("inputInsights"),
             #entities
             "createdAt": datetime.now()
         }
         form_collection.insert_one(db_entry)
         print("Inserted data into MongoDB:", db_entry)
         print("#" * 50) 
-        latest_entry = form_collection.find_one({"email": email}, sort=[("createdAt", DESCENDING)])
+        # latest_entry = form_collection.find_one({"email": email}, sort=[("createdAt", DESCENDING)])
 
-        if latest_entry:
-            print("Latest Data:", latest_entry)
-            openai = OnDemandOpenAI()
-            response = openai.query(input_summary_prompt.format(latest_entry["textInput"], latest_entry["videoTranscript"], latest_entry["blogContent"]))
-            print("OpenAI Response:", response)
+        # if latest_entry:
+        #     print("Latest Data:", latest_entry)
+        #     latest_entry["_id"] = str(latest_entry["_id"])
+        #     openai = OnDemandOpenAI()
+        #     response = openai.query(input_summary_prompt.format(latest_entry["textInput"], latest_entry["videoTranscript"], latest_entry["blogContent"]))
+        #     print("OpenAI Response:", response)
             
-            return jsonify({
-                "message": "Media uploaded, form data processed, and latest data retrieved successfully!",
-                "data":{ "processed_data": response, "latestEntry": latest_entry }
-            }), 200
-        else:
-            return jsonify({
-                "message": "No previous records found for this email.",
-                "data": None
-            }), 404
+        return jsonify({
+            "message": "Media uploaded, form data processed, and latest data retrieved successfully!"
+        }), 200
+        
 
     except Exception as e:
         print("Error during processing:", str(e))
         return jsonify({"error": str(e)}), 500
 
+
+@app.route("/get-latest-data", methods=["GET"])
+def get_latest_data():
+    email = request.args.get("email")  # Get email from query parameters
+    
+    if not email:
+        return jsonify({"message": "Email is required", "data": None}), 400
+
+    try:
+        latest_entry = form_collection.find_one({"email": email}, sort=[("createdAt", -1)])
+
+        if latest_entry:
+            # Convert ObjectId to string
+            latest_entry["_id"] = str(latest_entry["_id"])
+            return jsonify({"message": "Latest entry retrieved", "data": latest_entry}), 200
+        else:
+            return jsonify({"message": "No records found for this email", "data": None}), 404
+
+    except Exception as e:
+        return jsonify({"message": f"Error fetching data: {e}", "data": None}), 500
+    
+    
 # def run_models(file_path):
 #     print()
 #     search_query = """Diljit Dosanjh recently had the opportunity to meet the Prime Minister of India, marking a significant and memorable moment in his journey. 
