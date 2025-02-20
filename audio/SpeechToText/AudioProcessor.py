@@ -112,7 +112,7 @@ class AudioFileProcessor:
 
 
 def main():
-    audio_file = "TruthLens/audio/data/speaker_2.wav"
+    audio_file = r"C:\Users\itsta\OneDrive\Desktop\HEMANG\TruthLens\audio\data\speaker_2.wav"
     processor = AudioFileProcessor(audio_file, translate_to_english=True)
     transcript = processor.process()
     print(transcript)

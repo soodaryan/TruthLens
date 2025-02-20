@@ -22,3 +22,8 @@ flask
 flask_cors
 
 twikit
+yt_dlp
+audio_extract
+pymongo 
+sys 
+ast

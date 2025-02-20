@@ -4,3 +4,4 @@ config.ini
 cookies.json
 node_modules
 uploads
+ffmpeg

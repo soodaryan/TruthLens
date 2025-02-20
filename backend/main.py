@@ -1,47 +1,39 @@
+from audio_extract import extract_audio
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
-import asyncio
+import sys
+import ast
+import whisper_at as whisper
+audio_tagging_time_resolution = 10
+model = whisper.load_model("small")
+
+main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, main_dir)
+
+from lib.llms import OnDemandOpenAI
+from lib.prompts import input_summary_prompt
+from toolkits.webToolkit.article_scraper import ArticleScraper
+from videodownload import download_youtube_video
 import sys
 import os 
 import json 
-# Get the parent directory of the current script
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-# Add the parent directory to sys.path
-sys.path.append(parent_dir)
-
-# from images.graphicDetails import ImageProcessor
-# from images.cloudi import CloudinaryPost
-
-# from text.BERT_NLI_fakenews import TextClassifier
-# from text.text_ner import NERExtractor
-# from text.text_sentiment import SentimentAnalyzer
-
-# from toolkits.socialmediaToolkit.factCheck import FactCheckAPI
-# from toolkits.socialmediaToolkit.hashtagPredictor import HashtagPredictor
-# from toolkits.socialmediaToolkit.twitterHandleScraper import TwitterHandleScraper, TweetSaver
-
-# from toolkits.webToolkit.article_scraper import ArticleScraper
-# from toolkits.webToolkit.links_scraper import NewsLinkExtractor
-# from toolkits.webToolkit.tweetScrapper import TweetScraper
-
 from werkzeug.utils import secure_filename
-from pymongo import MongoClient
-
+from pymongo import MongoClient, DESCENDING
 from datetime import datetime
 
 app = Flask(__name__)
 CORS(app) 
 
-# client = MongoClient("mongodb+srv://hemang_truthtell:hemang11062005@cluster0.u3oyruj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-# db = client["TuthTell"]
-# form_collection = db["userInput"]
-
-client = MongoClient(f"mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo")  
+# client = MongoClient(f"mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo") 
+client = MongoClient("mongodb://localhost:27017/") 
 db = client["test"]
 form_collection = db["TruthTell"]
 
 print("Connected to MongoDB")
+AUDIO_UPLOAD_FOLDER = r'.\uploads\audios'
+os.makedirs(AUDIO_UPLOAD_FOLDER, exist_ok=True)
+app.config['AUDIO_UPLOAD_FOLER'] = AUDIO_UPLOAD_FOLDER
 
 VIDEO_UPLOAD_FOLDER = './uploads/videos'
 os.makedirs(VIDEO_UPLOAD_FOLDER, exist_ok=True)
@@ -78,33 +70,111 @@ def upload_media():
                     # save_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], file.filename)
                     
                     file.save(save_path)
-                    uploaded_videos.append(save_path)
+                    
                     print(f"Saved video {file.filename} at {save_path}")
                 else:
                     print(f"Skipping unsupported file type: {file.content_type}")
 
         # Add the uploaded video paths to the extracted data
+        if video_links:
+            video_links = ast.literal_eval(video_links) if isinstance(video_links, str) else video_links
+            
+            for link in video_links:
+                download_youtube_video(link, save_path="./uploads/videos")  
+                print("Downloading video from link:", link)
+ 
+        if blog_links:
+            blog_links = ast.literal_eval(blog_links) if isinstance(blog_links, str) else blog_links
+            scraper = ArticleScraper()
+            max_articles_to_scrape = 1  # Dynamic input for max articles  
+            articles = scraper.scrape_articles(blog_links, max_count=max_articles_to_scrape)
+            # Output results
+            print("\nScraped Articles:")
+            for url, content in articles.items():
+                print(f"URL: {url}\nContent: {content}\n")
+                extracted_links["blogContent"] = content
+                
+        for video_file in os.listdir(app.config['VIDEO_UPLOAD_FOLDER']):
+            video_path = os.path.join(app.config['VIDEO_UPLOAD_FOLDER'], video_file)
+            uploaded_videos.append(video_path)
+            print("Uploaded video:", video_path)
+            # Ensure it's a video file
+            if video_file.endswith(('.mp4', '.avi', '.mov', '.mkv')):
+                print("Extracting audio from video:", video_path)
+                
+                # Change extension to .mp3 for the audio output
+                audio_filename = os.path.splitext(video_file)[0] + ".mp3"
+                output_audio_path = os.path.join(AUDIO_UPLOAD_FOLDER, audio_filename)
+
+                # ✅ Delete existing file before extraction
+                if os.path.exists(output_audio_path):
+                    os.remove(output_audio_path)
+                    print(f"Deleted existing file: {output_audio_path}")
+
+                extract_audio(input_path=video_path, output_path=output_audio_path)
+                print(f"Audio extracted successfully: {output_audio_path}")
+
+            else:
+                print(f"Skipping non-video file: {video_file}")
+
+            # print("Extracted audio from video:", video_path)
+        
+        for audio_file in os.listdir(AUDIO_UPLOAD_FOLDER):
+            audio_path = os.path.join(r'.\uploads\audios', audio_file)
+
+            if audio_file.endswith(('.mp3', '.wav', '.flac')):  # Ensure it's an audio file
+                print(f"Transcribing audio: {audio_path}")
+
+                try:
+                    result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
+                    print(result["text"])
+                    audio_tag_result = whisper.parse_at_label(result, language='follow_asr', top_k=5, p_threshold=-1, include_class_list=list(range(527)))
+
+                    print(audio_tag_result)
+                    extracted_links["videoTranscript"] = result["text"]
+                    extracted_links["videoInsights"] = audio_tag_result
+
+                except Exception as e:
+                    print(f"Error transcribing {audio_file}: {e}")
+                    extracted_links["videoTranscript"] = None
+                    extracted_links["videoInsights"] = None
+            else:
+                print(f"Skipping non-audio file: {audio_file}")
+
         extracted_links["videoPaths"] = uploaded_videos if uploaded_videos else None
 
-        # Insert data (align with Mongoose schema)
         db_entry = {
             "email": email,
-            "textInput": extracted_links["textInput"],
-            "videoLinks": extracted_links["videoLinks"],
-            "blogLinks": extracted_links["blogLinks"],
-            "videoPaths": extracted_links["videoPaths"],
+            "textInput": extracted_links.get("textInput"),
+            "videoLinks": extracted_links.get("videoLinks"),
+            "blogLinks": extracted_links.get("blogLinks"),
+            "blogContent": extracted_links.get("blogContent"),
+            "videoTranscript": extracted_links.get("videoTranscript"),
+            "videoPaths": extracted_links.get("videoPaths"),
+            "videoInsights": extracted_links.get("videoInsights"),
+            #entities
             "createdAt": datetime.now()
         }
         form_collection.insert_one(db_entry)
         print("Inserted data into MongoDB:", db_entry)
+        print("#" * 50) 
+        latest_entry = form_collection.find_one({"email": email}, sort=[("createdAt", DESCENDING)])
 
-        # Log all the extracted data for debugging
-        print("Extracted Data:", extracted_links)
-
-        return jsonify({
-            "message": "Media uploaded, form data processed, and saved to MongoDB successfully!",
-            "data": extracted_links
-        }), 200
+        if latest_entry:
+            print("Latest Data:", latest_entry)
+            openai = OnDemandOpenAI()
+            response = openai.query(input_summary_prompt.format(latest_entry["textInput"], latest_entry["videoTranscript"], latest_entry["blogContent"]))
+            print("OpenAI Response:", response)
+            
+            return jsonify({
+                "message": "Media uploaded, form data processed, and latest data retrieved successfully!",
+                "data":{ "processed_data": response, "latestEntry": latest_entry }
+            }), 200
+        else:
+            return jsonify({
+                "message": "No previous records found for this email.",
+                "data": None
+            }), 404
 
     except Exception as e:
         print("Error during processing:", str(e))

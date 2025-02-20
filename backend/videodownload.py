@@ -1,7 +1,7 @@
 import os
 import yt_dlp
 
-def download_youtube_video(link, save_path="./upload/videos"):
+def download_youtube_video(link, save_path="./uploads/videos"):
     """
     Download a YouTube video using yt-dlp and save it to the specified path.
     
@@ -27,9 +27,9 @@ def download_youtube_video(link, save_path="./upload/videos"):
     except Exception as e:
         print(f"An error occurred during download: {str(e)}")
 
-if __name__ == "__main__":
-    # Your YouTube video link
-    LINK = "https://www.youtube.com/watch?v=j3CkXcUU4j4&t=214s&ab_channel=Firstpost"
+# if __name__ == "__main__":
+#     # Your YouTube video link
+#     LINK = "https://www.youtube.com/watch?v=j3CkXcUU4j4&t=214s&ab_channel=Firstpost"
     
-    # Call the function with the specified save path
-    download_youtube_video(LINK, save_path="./upload/videos")
+#     # Call the function with the specified save path
+#     download_youtube_video(LINK, save_path="./uploads/videos")
