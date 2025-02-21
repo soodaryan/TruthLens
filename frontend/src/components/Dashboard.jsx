@@ -8,33 +8,35 @@ const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [top5Data, setTop5Data] = useState(null);
+  const [topData, setTopData] = useState(null);
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
   const email = currentUser.email;
 
   useEffect(() => {
-    let trendChart, patternChart, sourceChart;
-    
-    const fetchTop5Data = async () => {
-        try {
-            const response = await fetch(`http://127.0.0.1:5000/get-latest-data?email=${email}`);
-
-            if (!response.ok) {
-                throw new Error("Failed to fetch data");
+        const fetchTopData = async () => {
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/get-top-data?email=${email}`);
+  
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+  
+                const result = await response.json();
+                setTopData(result.data);
+                console.log(result.data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
             }
+        };
+  
+        fetchTopData();
+    }, []);
+  useEffect(() => {
+    let trendChart, patternChart, sourceChart;
 
-            const result = await response.json();
-            setTop5Data(result.data);
-            console.log(result.data);
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    fetchTop5Data();
 
     // Initialize Charts Only If the DOM Elements Exist
     const initializeCharts = () => {
@@ -424,8 +426,8 @@ const Dashboard = () => {
                 <tbody className="divide-y divide-gray-200">
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
-                      {top5Data?.name?.length > 0 ? (
-                  top5Data.name.map((username, index) => {
+                      {topData?.name?.length > 0 ? (
+                  topData.name.map((username, index) => {
                     return (
                       <div key={index} className="flex items-center gap-4">
                         {username}
@@ -433,7 +435,7 @@ const Dashboard = () => {
                     );
                   })
                 ) : (
-                  <p className="text-gray-500">No videos available.</p>
+                  <p className="text-gray-500">No username available.</p>
                 )}
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-900">
