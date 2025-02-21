@@ -1,11 +1,11 @@
 # 🕵️‍♂️ TruthLens: Focus On Facts, Blur The False 🌐
 
-TruthLens is dedicated to combating the rapid spread of misinformation in live broadcasts and digital media—a challenge that has become increasingly urgent in today’s fast-paced information landscape. With a mission rooted in fostering trust and transparency, TruthLens harnesses cutting-edge AI technologies to validate the authenticity of content in real time.
+TruthLens is dedicated to combating the rapid spread of misinformation in live broadcasts and digital media challenge that has become increasingly urgent in today’s fast-paced information landscape. With a mission rooted in fostering trust and transparency, TruthLens harnesses cutting-edge AI technologies to validate the authenticity of content in real time.
 
 ---
 
 ## 🚀 Features
-- **Real-Time Verification**: Validate text, images, and videos instantly.
+- **Real-Time Verification**: Validate text, and videos instantly.
 - **Multimodal Detection**: Simultaneously analyze text, images, and videos to detect manipulation using AI.
 - **Dynamic Hashtag Context Analysis**: Predict the relevance and intent of trending hashtags using real-time semantic analysis 🔖.
 - **Profile Behavior Scoring**: Assess social media profiles based on historical behavior for credibility scoring 📊.
