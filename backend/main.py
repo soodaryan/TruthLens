@@ -4,7 +4,6 @@ from flask_cors import CORS
 import os
 import sys
 import ast
-import whisper_at as whisper
 audio_tagging_time_resolution = 10
 # model = whisper.load_model("small")
 
@@ -21,6 +20,7 @@ import json
 from werkzeug.utils import secure_filename
 from pymongo import MongoClient, DESCENDING
 from datetime import datetime
+import whisper_at as whisper
 
 app = Flask(__name__)
 CORS(app) 
