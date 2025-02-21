@@ -15,7 +15,7 @@
     "react-toastify": "^11.0.3"
   },
   "scripts": {
-    "start": "set PORT=80 && node server.js",
+    "start": "set PORT=80 && node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
