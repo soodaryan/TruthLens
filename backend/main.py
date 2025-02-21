@@ -5,6 +5,8 @@ import os
 import sys
 import ast
 import whisper_at as whisper
+from pydub import AudioSegment
+import math
 audio_tagging_time_resolution = 10
 # model = whisper.load_model("small")
 
