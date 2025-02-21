@@ -130,25 +130,45 @@ def upload_media():
                 print(f"Transcribing audio: {audio_path}")
                 extracted_links["videoTranscript"] = None
                 extracted_links["videoInsights"] = None
-                try:
-                    result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
-                    print(result["text"])
-                    audio_tag_result = whisper.parse_at_label(result, language='follow_asr', top_k=5, p_threshold=-1, include_class_list=list(range(527)))
+                # try:
+                #     result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
+                #     print(result["text"])
+                #     audio_tag_result = whisper.parse_at_label(result, language='follow_asr', top_k=5, p_threshold=-1, include_class_list=list(range(527)))
 
-                    print(audio_tag_result)
-                    extracted_links["videoTranscript"] = result["text"]
-                    extracted_links["videoInsights"] = audio_tag_result
+                #     print(audio_tag_result)
+                #     extracted_links["videoTranscript"] = result["text"]
+                #     extracted_links["videoInsights"] = audio_tag_result
 
-                except Exception as e:
-                    print(f"Error transcribing {audio_file}: {e}")
-                    extracted_links["videoTranscript"] = None
-                    extracted_links["videoInsights"] = None
+                # except Exception as e:
+                #     print(f"Error transcribing {audio_file}: {e}")
+                #     extracted_links["videoTranscript"] = None
+                #     extracted_links["videoInsights"] = None
             else:
                 print(f"Skipping non-audio file: {audio_file}")
 
         extracted_links["videoPaths"] = uploaded_videos if uploaded_videos else None
         openai = OnDemandOpenAI()
-        response = openai.query(input_summary_prompt.format(extracted_links["textInput"], extracted_links["videoTranscript"], extracted_links["blogContent"]))
+        # response = openai.query(input_summary_prompt.format(extracted_links["textInput"], extracted_links["videoTranscript"], extracted_links["blogContent"]))
+        text_input = extracted_links.get("textInput", None)
+        video_transcript = extracted_links.get("videoTranscript", None)
+        blog_content = extracted_links.get("blogContent", None)
+
+        # Function to check if a value is NaN or None
+        def is_nan_or_none(value):
+            return value is None or (isinstance(value, float) and math.isnan(value))
+
+        # Construct prompt accordingly
+        if is_nan_or_none(text_input):
+            text_input = "No text input provided."
+        if is_nan_or_none(video_transcript):
+            video_transcript = "No video transcript available."
+        if is_nan_or_none(blog_content):
+            blog_content = "No blog content available."
+
+        # Format the prompt safely
+        prompt = input_summary_prompt.format(text_input, video_transcript, blog_content)
+        response = openai.query(prompt)
+        
         print("OpenAI Response:", response)
         extracted_links["inputInsights"] = response
         db_entry = {
@@ -198,8 +218,8 @@ def get_latest_data():
     except Exception as e:
         return jsonify({"message": f"Error fetching data: {e}", "data": None}), 500
     
-@app.route("/get-top-5", methods=["GET"]) 
-def get_top_5():
+@app.route("/get-top-data", methods=["GET"]) 
+def get_top_data():
     email = request.args.get("email")
     if not email:
         return jsonify({"message": "Email is required", "data": None}), 400

@@ -25,4 +25,8 @@ yt_dlp
 audio_extract
 pymongo
 triton==2.0.0
+<<<<<<< HEAD
 whisper_at
+=======
+whisper_at
+>>>>>>> refs/remotes/origin/main
