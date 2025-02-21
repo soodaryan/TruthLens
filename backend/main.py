@@ -4,13 +4,12 @@ from flask_cors import CORS
 import os
 import sys
 import ast
-import whisper_at as whisper
-audio_tagging_time_resolution = 10
-# model = whisper.load_model("small")
-
+from pydub import AudioSegment
+import math
 main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, main_dir)
 
+from audio.SpeechToText.AudioProcessor import audioProcessor, TranscriptProcessor, SpeechToText, AudioFileProcessor
 from lib.llms import OnDemandOpenAI
 from lib.prompts import input_summary_prompt
 from toolkits.webToolkit.article_scraper import ArticleScraper
@@ -108,41 +107,44 @@ def upload_media():
                 
                 # Change extension to .mp3 for the audio output
                 audio_filename = os.path.splitext(video_file)[0] + ".mp3"
+                audio_filename_wav = os.path.splitext(video_file)[0] + ".wav"
                 output_audio_path = os.path.join(AUDIO_UPLOAD_FOLDER, audio_filename)
-
+                output_audio_path_wav = os.path.join(AUDIO_UPLOAD_FOLDER, audio_filename_wav)
                 # ✅ Delete existing file before extraction
                 if os.path.exists(output_audio_path):
                     os.remove(output_audio_path)
                     print(f"Deleted existing file: {output_audio_path}")
 
                 extract_audio(input_path=video_path, output_path=output_audio_path)
+                audio = AudioSegment.from_mp3(output_audio_path)
+                audio.export(output_audio_path_wav, format="wav")
+                os.remove(output_audio_path)
+                print("Audio extraction and conversion complete.")
+
                 print(f"Audio extracted successfully: {output_audio_path}")
 
             else:
                 print(f"Skipping non-video file: {video_file}")
 
             # print("Extracted audio from video:", video_path)
-        
+        print("Audio extraction complete.")
+        print("Starting Transcription...")
         for audio_file in os.listdir(AUDIO_UPLOAD_FOLDER):
-            audio_path = os.path.join(r'.\uploads\audios', audio_file)
+            audio_path = os.path.join(r'uploads\audios', audio_file)
 
             if audio_file.endswith(('.mp3', '.wav', '.flac')):  # Ensure it's an audio file
                 print(f"Transcribing audio: {audio_path}")
-                extracted_links["videoTranscript"] = None
-                extracted_links["videoInsights"] = None
-                # try:
-                #     result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
-                #     print(result["text"])
-                #     audio_tag_result = whisper.parse_at_label(result, language='follow_asr', top_k=5, p_threshold=-1, include_class_list=list(range(527)))
-
-                #     print(audio_tag_result)
-                #     extracted_links["videoTranscript"] = result["text"]
-                #     extracted_links["videoInsights"] = audio_tag_result
-
-                # except Exception as e:
-                #     print(f"Error transcribing {audio_file}: {e}")
-                #     extracted_links["videoTranscript"] = None
-                #     extracted_links["videoInsights"] = None
+                # extracted_links["videoTranscript"] = None
+                # extracted_links["videoInsights"] = None
+                try:
+                    # result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
+                    processor = AudioFileProcessor(audio_file, translate_to_english=True)
+                    transcript = processor.process()
+                    print(transcript)
+                    extracted_links["videoTranscript"] = transcript
+                    print("Audio transcription complete.")
+                except Exception as e:
+                    print(f"Error during audio transcription: {e}")
             else:
                 print(f"Skipping non-audio file: {audio_file}")
 
@@ -180,7 +182,7 @@ def upload_media():
             "blogContent": extracted_links.get("blogContent"),
             "videoTranscript": extracted_links.get("videoTranscript"),
             "videoPaths": extracted_links.get("videoPaths"),
-            "videoInsights": extracted_links.get("videoInsights"),
+            # "videoInsights": extracted_links.get("videoInsights"),
             "inputInsights": extracted_links.get("inputInsights"),
             #entities
             "createdAt": datetime.now()

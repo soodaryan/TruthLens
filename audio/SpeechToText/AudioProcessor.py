@@ -71,6 +71,7 @@ class SpeechToText:
     def detect_and_route_language(self):
         try:
             recognizer = sr.Recognizer()
+            print("Audio file path: ", self.audio_file)
             with sr.AudioFile(self.audio_file) as source:
                 audio_data = recognizer.record(source)
 
@@ -112,7 +113,7 @@ class AudioFileProcessor:
 
 
 def main():
-    audio_file = r"C:\Users\itsta\OneDrive\Desktop\HEMANG\TruthLens\audio\data\WIN_20240514_12_37_57_Pro.mp3"
+    audio_file = r"audio\data\WIN_20240514_12_37_57_Pro.wav"
     processor = AudioFileProcessor(audio_file, translate_to_english=True)
     transcript = processor.process()
     print(transcript)
