@@ -6,6 +6,8 @@ import image from "./images/manImg.png";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { auth } from "../firebase/firebase";
+import { toast } from "react-toastify";
+
 
 const Sidebar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -47,6 +49,11 @@ const Sidebar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleNavLinkClickAnalytics = (event) => {
+    event.preventDefault(); // Prevent navigation
+    toast.warning("Access Restricted: You are not allowed to open Analytics!");
+  };
+
   const handleNavLinkClick = (e) => {
     const navLinks = document.querySelectorAll(".sidebar-nav a");
     navLinks.forEach((link) => {
@@ -80,9 +87,9 @@ const Sidebar = () => {
             <i className="fas fa-file-alt"></i>
             <span>Content</span>
           </Link> */}
-          <Link to="/analytics" onClick={handleNavLinkClick}>
+          <Link to="/analytics" onClick={handleNavLinkClickAnalytics}>
             <i className="fas fa-file-alt"></i>
-            <span>Analytics</span>
+            <span>Analytics 🔒</span>
           </Link>
           <Link to="/trend-and-report" onClick={handleNavLinkClick}>
             <i className="fas fa-chart-bar"></i>

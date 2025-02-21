@@ -12,7 +12,20 @@ const Dashboard = () => {
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
   const email = currentUser.email;
-
+  const getTimeDifference = (createdAt) => {
+    const createdTime = new Date(createdAt);
+    const currentTime = new Date();
+    const diffInMs = currentTime - createdTime;
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+  
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes} min ago`;
+    } else if (diffInMinutes < 1440) {
+      return `${Math.floor(diffInMinutes / 60)} hr ago`;
+    } else {
+      return `${Math.floor(diffInMinutes / 1440)} days ago`;
+    }
+  };
   useEffect(() => {
         const fetchTopData = async () => {
             try {
@@ -34,6 +47,7 @@ const Dashboard = () => {
   
         fetchTopData();
     }, []);
+    console.log("hello ",topData);
   useEffect(() => {
     let trendChart, patternChart, sourceChart;
 
@@ -407,10 +421,10 @@ const Dashboard = () => {
                       Claimant
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Type
+                      Input Tags
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Time
+                      Last Updated
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Status
@@ -418,225 +432,82 @@ const Dashboard = () => {
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Confidance Level
                     </th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      {topData?.name?.length > 0 ? (
-                  topData.name.map((username, index) => {
-                    return (
-                      <div key={index} className="flex items-center gap-4">
-                        {username}
-                      </div>
-                    );
-                  })
-                ) : (
-                  <p className="text-gray-500">No username available.</p>
-                )}
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      Twitter Post
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      2 hr ago{" "}
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <span className="text-green-500 text-sm">High</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-green-500 h-1.5 rounded-full"
-                            style={{ width: "85%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm">
-                      <button className="text-blue-500 hover:text-blue-400">
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                  {/* Additional rows with similar structure but different data */}
-                </tbody>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-sm text-gray-900">Sanjay Verma</p>
-                          <p className="text-xs text-gray-500">ID: TL-147</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      Aajtak News Article
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      5 hr ago{" "}
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
-                        True News
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <span className="text-green-500 text-sm">High</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-green-500 h-1.5 rounded-full"
-                            style={{ width: "85%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm">
-                      <button className="text-blue-500 hover:text-blue-400">
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                  {/* Additional rows with similar structure but different data */}
-                </tbody>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: TL-117</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      News Article
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      16 hr ago{" "}
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <span className="text-yellow-500 text-sm">Medium</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-yellow-500 h-1.5 rounded-full"
-                            style={{ width: "50%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm">
-                      <button className="text-blue-500 hover:text-blue-400">
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                  {/* Additional rows with similar structure but different data */}
-                </tbody>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-sm text-gray-900">
-                            Gurkeerat Singh
-                          </p>
-                          <p className="text-xs text-gray-500">ID: TL-101</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      Twitter Post
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      22 hr ago{" "}
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-green-300 text-nuetral-500">
-                        True News
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <span className="text-yellow-500 text-sm">Medium</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-yellow-500 h-1.5 rounded-full"
-                            style={{ width: "50%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm">
-                      <button className="text-blue-500 hover:text-blue-400">
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
-                  {/* Additional rows with similar structure but different data */}
-                </tbody>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-sm text-gray-900">Kartik Sharma</p>
-                          <p className="text-xs text-gray-500">ID: TL-117</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      Twitter Post
-                    </td>
-                    <td className="px-4 py-4 text-sm text-gray-900">
-                      2 days ago{" "}
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-nuetral-500">
-                        Fake News
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <span className="text-red-500 text-sm">High</span>
-                        <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
-                          <div
-                            className="bg-red-500 h-1.5 rounded-full"
-                            style={{ width: "85%" }}
-                          ></div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4 text-sm">
-                      <button className="text-blue-500 hover:text-blue-400">
-                        View Details
-                      </button>
-                    </td>
-                  </tr>
+                  {topData?.length > 0 ? (
+                    topData.map((item, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        {/* Email Column */}
+                        <td className="px-4 py-4">
+                          {item?.email ? (
+                            <div className="flex items-center gap-4">
+                              {item.email}
+                            </div>
+                          ) : (
+                            <p className="text-gray-500">No email available.</p>
+                          )}
+                        </td>
+
+
+                        {/* Time Since Creation Column */}
+                        <td className="px-4 py-4 text-sm text-gray-900">
+                          {item?.createdAt ? (
+                            <div className="flex items-center gap-4">
+                              {getTimeDifference(item.createdAt)}
+                            </div>
+                          ) : (
+                            <p className="text-gray-500">No date available.</p>
+                          )}
+                        </td>
+
+                          {/* Created At Column */}
+                        <td className="px-4 py-4 text-sm text-gray-900">
+                          {item?.createdAt ? (
+                            <div className="flex items-center gap-4">
+                              {item.createdAt}
+                            </div>
+                          ) : (
+                            <p className="text-gray-500">No date available.</p>
+                          )}
+                        </td>
+                        {/* Fake News Status */}
+                        <td className="px-4 py-4">
+                          <span className="px-2 py-1 text-xs rounded-full bg-red-300 text-neutral-500">
+                            Fake News
+                          </span>
+                        </td>
+
+                        {/* Confidence Level */}
+                        <td className="px-4 py-4">
+                          <div className="flex items-center">
+                            <span className="text-green-500 text-sm">High</span>
+                            <div className="ml-2 w-16 bg-gray-200 rounded-full h-1.5">
+                              <div
+                                className="bg-green-500 h-1.5 rounded-full"
+                                style={{ width: "85%" }}
+                              ></div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan="5"
+                        className="px-4 py-4 text-gray-500 text-center"
+                      >
+                        No data available.
+                      </td>
+                    </tr>
+                  )}
                   {/* Additional rows with similar structure but different data */}
                 </tbody>
               </table>
             </div>
             <div className="p-4 border-t border-gray-200">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-500">
-                  Showing 1-5 of 56 claims
-                </p>
                 <div className="flex space-x-2">
                   <button className="px-3 py-1 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-200">
                     Previous
