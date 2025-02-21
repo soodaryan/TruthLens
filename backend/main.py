@@ -4,8 +4,10 @@ from flask_cors import CORS
 import os
 import sys
 import ast
-from pydub import AudioSegment
-import math
+import whisper_at as whisper
+audio_tagging_time_resolution = 10
+# model = whisper.load_model("small")
+
 main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, main_dir)
 
@@ -20,6 +22,7 @@ import json
 from werkzeug.utils import secure_filename
 from pymongo import MongoClient, DESCENDING
 from datetime import datetime
+import whisper_at as whisper
 
 app = Flask(__name__)
 CORS(app) 

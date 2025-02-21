@@ -22,6 +22,6 @@ class OCRService:
 
 if __name__ == "__main__":
     ocr_service = OCRService(os.getenv("OCR_API_KEY"))
-    image_url = "https://imgur.com/truthlens-XIJEVXw"
+    image_url = ""
     result = ocr_service.imgOCR(image_url)
     print(result)
