@@ -6,7 +6,7 @@ import sys
 import ast
 import whisper_at as whisper
 audio_tagging_time_resolution = 10
-model = whisper.load_model("small")
+# model = whisper.load_model("small")
 
 main_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.insert(0, main_dir)
@@ -25,8 +25,8 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app) 
 
-# client = MongoClient(f"mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo") 
-client = MongoClient("mongodb://localhost:27017/") 
+client = MongoClient(f"mongodb+srv://Ishan:testingbingo@bingo.bhqrq.mongodb.net/?retryWrites=true&w=majority&appName=Bingo") 
+# client = MongoClient("mongodb://localhost:27017/") 
 db = client["test"]
 form_collection = db["TruthTell"]
 
@@ -44,6 +44,7 @@ def upload_media():
     print("Received media upload request")
     
     # Extract form data
+    name = request.form.get("name", None)
     email = request.form.get("email", None)
     text_input = request.form.get("textInput", None)
     blog_links = request.form.get("relatedLinks", None)  # Match with 'blogLinks' in schema
@@ -53,6 +54,7 @@ def upload_media():
     # Initialize variables to store results
     uploaded_videos = []
     extracted_links = {
+        "name": name if name else None,
         "email": email if email else None,
         "textInput": text_input if text_input else None,
         "blogLinks": json.loads(blog_links) if blog_links else None,
@@ -126,7 +128,8 @@ def upload_media():
 
             if audio_file.endswith(('.mp3', '.wav', '.flac')):  # Ensure it's an audio file
                 print(f"Transcribing audio: {audio_path}")
-
+                extracted_links["videoTranscript"] = None
+                extracted_links["videoInsights"] = None
                 try:
                     result = model.transcribe(audio_path, at_time_res=audio_tagging_time_resolution)
                     print(result["text"])
@@ -149,6 +152,7 @@ def upload_media():
         print("OpenAI Response:", response)
         extracted_links["inputInsights"] = response
         db_entry = {
+            "name": name,
             "email": email,
             "textInput": extracted_links.get("textInput"),
             "videoLinks": extracted_links.get("videoLinks"),
@@ -164,15 +168,6 @@ def upload_media():
         form_collection.insert_one(db_entry)
         print("Inserted data into MongoDB:", db_entry)
         print("#" * 50) 
-        # latest_entry = form_collection.find_one({"email": email}, sort=[("createdAt", DESCENDING)])
-
-        # if latest_entry:
-        #     print("Latest Data:", latest_entry)
-        #     latest_entry["_id"] = str(latest_entry["_id"])
-        #     openai = OnDemandOpenAI()
-        #     response = openai.query(input_summary_prompt.format(latest_entry["textInput"], latest_entry["videoTranscript"], latest_entry["blogContent"]))
-        #     print("OpenAI Response:", response)
-            
         return jsonify({
             "message": "Media uploaded, form data processed, and latest data retrieved successfully!"
         }), 200
@@ -203,7 +198,31 @@ def get_latest_data():
     except Exception as e:
         return jsonify({"message": f"Error fetching data: {e}", "data": None}), 500
     
+@app.route("/get-top-5", methods=["GET"]) 
+def get_top_5():
+    email = request.args.get("email")
+    if not email:
+        return jsonify({"message": "Email is required", "data": None}), 400
     
+    try:
+        last_5_entries = list(
+            form_collection.find({"email": email})
+            .sort("createdAt", DESCENDING)
+            .limit(5)
+        )
+
+        if last_5_entries:
+            # Convert ObjectId to string for JSON serialization
+            for entry in last_5_entries:
+                entry["_id"] = str(entry["_id"])
+
+            return jsonify({"message": "Last 5 entries retrieved", "data": last_5_entries}), 200
+        else:
+            return jsonify({"message": "No records found for this email", "data": None}), 404
+
+    except Exception as e:
+        return jsonify({"message": f"Error fetching data: {e}", "data": None}), 500
+
 # def run_models(file_path):
 #     print()
 #     search_query = """Diljit Dosanjh recently had the opportunity to meet the Prime Minister of India, marking a significant and memorable moment in his journey. 

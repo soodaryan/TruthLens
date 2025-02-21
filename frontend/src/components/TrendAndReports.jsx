@@ -4,7 +4,7 @@ import ApexCharts from "apexcharts";
 // import image from "./images/InpImg.png";
 // import image2 from "./images/fakeimage.jpg";
 // import video from "./images/diljitdosanghpmmodi.mp4";
-import audio from "./images/diljitdosanjhaudio.mp3";
+// import audio from "./images/diljitdosanjhaudio.mp3";
 import Sidebar from "./Sidebar";
 import { useAuth } from "../context/authContext";
 import ReactMarkdown from "react-markdown";

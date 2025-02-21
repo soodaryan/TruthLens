@@ -6,10 +6,35 @@ import { useAuth } from "../context/authContext";
 
 const Dashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [top5Data, setTop5Data] = useState(null);
   const { currentUser } = useAuth();
   const { userLoggedIn } = useAuth();
+  const email = currentUser.email;
+
   useEffect(() => {
     let trendChart, patternChart, sourceChart;
+    
+    const fetchTop5Data = async () => {
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/get-latest-data?email=${email}`);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch data");
+            }
+
+            const result = await response.json();
+            setTop5Data(result.data);
+            console.log(result.data);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    fetchTop5Data();
 
     // Initialize Charts Only If the DOM Elements Exist
     const initializeCharts = () => {
@@ -190,13 +215,6 @@ const Dashboard = () => {
                     </div>
                   </div>
                 )}
-                {/* <img
-                  className="h-24 w-24 rounded-full mx-auto transition-opacity duration-300 opacity-100"
-                  src={image}
-                  alt="Profile"
-                  loading="lazy"
-                  id="el-amo17jis"
-                /> */}
 
                 <div
                   className="border-t border-neutral-500 pt-4"
@@ -364,7 +382,7 @@ const Dashboard = () => {
         </section>
         <section id="claims_dashboard" className="p-6 space-y-6">
           <div className="bg-white rounded-lg border border-gray-200">
-            <div className="p-4 border-b border-gray-200">
+            {/* <div className="p-4 border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <h2 className="text-lg font-medium text-gray-900">
                   Recent Claims
@@ -378,7 +396,7 @@ const Dashboard = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-100">
@@ -406,14 +424,17 @@ const Dashboard = () => {
                 <tbody className="divide-y divide-gray-200">
                   <tr className="hover:bg-gray-50">
                     <td className="px-4 py-4">
-                      <div className="flex items-center">
-                        <div className="ml-3">
-                          <p className="text-sm text-gray-900">
-                            Sumedha Aggarwal
-                          </p>
-                          <p className="text-xs text-gray-500">ID: TL-60</p>
-                        </div>
+                      {top5Data?.name?.length > 0 ? (
+                  top5Data.name.map((username, index) => {
+                    return (
+                      <div key={index} className="flex items-center gap-4">
+                        {username}
                       </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-gray-500">No videos available.</p>
+                )}
                     </td>
                     <td className="px-4 py-4 text-sm text-gray-900">
                       Twitter Post

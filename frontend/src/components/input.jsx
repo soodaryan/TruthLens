@@ -55,6 +55,7 @@ const InputForm = () => {
     videos.forEach((video, index) => {
       formData.append(`video_${index}`, video);
     });
+    formData.append("name", currentUser.displayName);
     formData.append("email", currentUser.email);
     // Append text input
     formData.append("textInput", textInput);
