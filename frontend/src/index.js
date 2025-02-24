@@ -6,6 +6,7 @@ import { AuthProvider } from "./context/authContext"; // Ensure the path is corr
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const port = 80;
 root.render(
   <AuthProvider>
     
