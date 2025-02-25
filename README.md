@@ -134,7 +134,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🔗 Useful Links
 - **GitHub Repository**: [TruthLens Repository](https://github.com/soodaryan/TruthLens)
-- **Demo Video**: [TruthLens Demo](https://www.youtube.com/watch?v=4E97q1Qvh7k)
+- **Demo Video**: [TruthLens Demo](https://youtu.be/LEagBLGoj9A)
 - **Acknowledgments**:
   - [Hugging Face Models](https://huggingface.co/)
   - [SightEngine API](https://sightengine.com/)
