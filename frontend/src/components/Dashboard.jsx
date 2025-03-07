@@ -29,7 +29,7 @@ const Dashboard = () => {
   useEffect(() => {
         const fetchTopData = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/get-top-data?email=${email}`);
+                const response = await fetch(`https://truthlens.aimsdtu.in/3000/get-top-data?email=${email}`);
   
                 if (!response.ok) {
                     throw new Error("Failed to fetch data");

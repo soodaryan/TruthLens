@@ -72,7 +72,7 @@ const InputForm = () => {
 
     // Send the FormData to the backend
     try {
-      const response = await fetch("http://127.0.0.1:5000/upload-media", {
+      const response = await fetch("https://truthlens.aimsdtu.in:3000/upload-media", {
         method: "POST",
         body: formData, // Send the FormData object
       });
