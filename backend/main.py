@@ -24,7 +24,7 @@ import json
 from werkzeug.utils import secure_filename
 from pymongo import MongoClient, DESCENDING
 from datetime import datetime
-import whisper_at as whisper
+# import whisper_at as whisper
 
 app = Flask(__name__)
 CORS(app) 
