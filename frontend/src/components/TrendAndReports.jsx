@@ -20,7 +20,7 @@ const TrendAnalysis = () => {
   useEffect(() => {
       const fetchLatestData = async () => {
           try {
-              const response = await fetch(`https://truthlens.aimsdtu.in/3000/get-latest-data?email=${email}`);
+              const response = await fetch(`https://truthlens.aimsdtu.in:3000/get-latest-data?email=${email}`);
 
               if (!response.ok) {
                   throw new Error("Failed to fetch data");
