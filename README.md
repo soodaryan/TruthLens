@@ -1,7 +1,7 @@
 <img width="717" height="231" alt="image-2-2" src="https://github.com/user-attachments/assets/d27e536f-c418-49c5-ad6b-250fd0186c9e" />
 
 # 🕵️‍♂️ TruthLens
-: Focus On Facts, Blur The False 🌐
+Focus On Facts, Blur The False 🌐
 
 TruthLens is dedicated to combating the rapid spread of misinformation in live broadcasts and digital media challenge that has become increasingly urgent in today’s fast-paced information landscape. With a mission rooted in fostering trust and transparency, TruthLens harnesses cutting-edge AI technologies to validate the authenticity of content in real time.
 
